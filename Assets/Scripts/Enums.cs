@@ -7,3 +7,9 @@ public enum Direction
     Left = 1,
     Right = 2,
 }
+
+public enum BulletType
+{
+    Enemy = 0,
+    Player = 1,
+}

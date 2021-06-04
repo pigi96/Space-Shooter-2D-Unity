@@ -23,7 +23,7 @@ public class GameController : MonoBehaviour
         playershipScr.Move(PlayerMoveInput());
         playershipScr.Rotate(PlayerRotateInput());
         playershipScr.Shoot(PlayerHasShot());
-        transform.position = playershipScr.transform.position;
+        transform.position = new Vector3(playershipScr.transform.position.x, playershipScr.transform.position.y, -10);
     }
 
     public bool PlayerMoveInput()
