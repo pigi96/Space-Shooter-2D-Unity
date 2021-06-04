@@ -22,6 +22,8 @@ public class GameController : MonoBehaviour
     {
         playershipScr.Move(PlayerMoveInput());
         playershipScr.Rotate(PlayerRotateInput());
+        playershipScr.Shoot(PlayerHasShot());
+        transform.position = playershipScr.transform.position;
     }
 
     public bool PlayerMoveInput()
@@ -40,5 +42,10 @@ public class GameController : MonoBehaviour
             return Direction.Right;
         }
         return Direction.None;
+    }
+
+    public bool PlayerHasShot()
+    {
+        return Input.GetKeyDown(KeyCode.Space) ? true : false;
     }
 }
