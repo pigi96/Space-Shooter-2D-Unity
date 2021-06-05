@@ -18,6 +18,7 @@ public class Spaceship : MonoBehaviour
     public BulletController bulletController;
     public BulletType bulletType;
     public RectTransform HPBarObj;
+    public RectTransform HPCanvas;
 
     public Spaceship(float maxSpeed, float currentSpeed, float accelerationSpeed, float rotationSpeed, BulletType bulletType)
     {

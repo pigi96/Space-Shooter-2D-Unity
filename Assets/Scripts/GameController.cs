@@ -16,7 +16,9 @@ public class GameController : MonoBehaviour
     void Update()
     {
         ControlPlayer();
+        ControlEnemies();
     }
+
 
     void ControlPlayer()
     {
@@ -25,6 +27,12 @@ public class GameController : MonoBehaviour
         playershipScr.Shoot(PlayerHasShot());
         transform.position = new Vector3(playershipScr.transform.position.x, playershipScr.transform.position.y, -10);
     }
+
+    void ControlEnemies()
+    {
+
+    }
+
 
     public bool PlayerMoveInput()
     {

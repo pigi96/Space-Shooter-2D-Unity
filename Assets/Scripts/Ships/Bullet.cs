@@ -24,6 +24,20 @@ public class Bullet : MonoBehaviour
         this.type = type;
         transform.position = startPos.transform.position;
         transform.rotation = startPos.transform.rotation;
+    }
 
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (type == BulletType.Enemy && other.CompareTag("Enemy"))
+        {
+            return;
+        }
+
+        if (type == BulletType.Player && other.CompareTag("Player"))
+        {
+            return;
+        }
+
+        Deactivate();
     }
 }
