@@ -71,7 +71,7 @@ public class Spaceship : MonoBehaviour
     {
         if (shot)
         {
-            bulletController.ShootBullet(transform, bulletType);
+            bulletController.ShootBullet(transform.position, transform.rotation, bulletType);
         }
     }
 

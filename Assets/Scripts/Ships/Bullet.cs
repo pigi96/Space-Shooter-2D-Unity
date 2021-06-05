@@ -16,18 +16,23 @@ public class Bullet : MonoBehaviour
         gameObject.SetActive(false);
     }
 
-    public void Activate(Transform startPos, BulletType type)
+    public void Activate(Vector3 startPos, Quaternion rotation, BulletType type)
     {
         alive = true;
         this.type = type;
         gameObject.SetActive(true);
         this.type = type;
-        transform.position = startPos.transform.position;
-        transform.rotation = startPos.transform.rotation;
+        transform.position = startPos;
+        transform.rotation = rotation;
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
+        if (other.CompareTag("Bullet"))
+        {
+            return;
+        }
+
         if (type == BulletType.Enemy && other.CompareTag("Enemy"))
         {
             return;
