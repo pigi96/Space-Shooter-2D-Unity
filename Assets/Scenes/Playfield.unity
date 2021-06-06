@@ -1346,7 +1346,7 @@ Rigidbody2D:
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 1
+  m_CollisionDetection: 0
   m_Constraints: 0
 --- !u!114 &2062236940
 MonoBehaviour:
@@ -1360,13 +1360,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af62676f5c5e8444db3ded671593da15, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MAX_HP: 100
-  HP: 100
   alive: 0
   bulletController: {fileID: 0}
-  bulletType: 1
   HPBarObj: {fileID: 207830100}
   HPCanvas: {fileID: 1327693678}
+  score: {fileID: 0}
+  hpBar: {fileID: 1457598103}
 --- !u!114 &2062236941
 MonoBehaviour:
   m_ObjectHideFlags: 0

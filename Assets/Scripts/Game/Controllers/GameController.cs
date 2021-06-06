@@ -32,6 +32,7 @@ public class GameController : MonoBehaviour
     float spawnTimer = 0;
     void ControlEnemies()
     {
+        print(Time.deltaTime);
         spawnTimer += Time.deltaTime;
         if (spawnTimer > GAME_CONFIG.spawn_timer) {
             SpawnEnemy();

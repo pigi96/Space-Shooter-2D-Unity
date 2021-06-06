@@ -34,12 +34,12 @@ public static class GAME_CONFIG
     // Setup variables from main-menu, also with defaults underlaid
     // ------------------------------------------------------------
     public static int max_enemies = 10;
-    public static int spawn_timer = 3;
+    public static int spawn_timer = 1;
 
     // PLAYER
-    public static ShipStats playerShipSettings = new ShipStats(100, 100, 20, 33, 5000, BulletType.Player);
+    public static ShipStats playerShipSettings = new ShipStats(100, 100, 20, 33, 222, BulletType.Player);
 
     // ENEMIES
-    public static ShipStats enemiesShipSettings = new ShipStats(50, 50, 7, 25, 5000, BulletType.Enemy);
+    public static ShipStats enemiesShipSettings = new ShipStats(50, 50, 7, 25, 222, BulletType.Enemy);
     // ------------------------------------------------------------
 }

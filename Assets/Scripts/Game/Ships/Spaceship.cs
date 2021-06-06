@@ -35,13 +35,11 @@ public class Spaceship : MonoBehaviour
     {
         if (direction == Direction.Left)
         {
-            GetComponent<Rigidbody2D>().angularVelocity = 0;
-            GetComponent<Rigidbody2D>().AddTorque(shipStats.torque);
+            GetComponent<Rigidbody2D>().angularVelocity = shipStats.torque;
         }
         else if (direction == Direction.Right)
         {
-            GetComponent<Rigidbody2D>().angularVelocity = 0;
-            GetComponent<Rigidbody2D>().AddTorque(-shipStats.torque);
+            GetComponent<Rigidbody2D>().angularVelocity = -shipStats.torque;
         } else
         {
             GetComponent<Rigidbody2D>().angularVelocity = 0;
