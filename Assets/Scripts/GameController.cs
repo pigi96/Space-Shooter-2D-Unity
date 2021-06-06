@@ -5,6 +5,7 @@ using UnityEngine;
 public class GameController : MonoBehaviour
 {
     public Playership playershipScr;
+    public EnemyController enemyController;
 
     // Start is called before the first frame update
     void Start()
@@ -28,9 +29,35 @@ public class GameController : MonoBehaviour
         transform.position = new Vector3(playershipScr.transform.position.x, playershipScr.transform.position.y, -10);
     }
 
+    int maxEnemies = 10;
+    float spawnTimer = 0;
+    float atSpawnTimer = 3;
     void ControlEnemies()
     {
+        spawnTimer += Time.deltaTime;
+        if (spawnTimer > atSpawnTimer) {
+            SpawnEnemy();
+            spawnTimer = 0;
+        }
+    }
 
+    // Use total random and let physics push it out + spawn outside camera field view
+    void SpawnEnemy()
+    {
+        float playerX = playershipScr.transform.position.x;
+        float playerY = playershipScr.transform.position.y;
+
+        float spawnX, spawnY;
+        do
+        {
+            spawnX = -GAME_CONFIG.DEFAULT_WIDTH / 2 + Random.Range(0, GAME_CONFIG.DEFAULT_WIDTH - 10);
+            spawnY = -GAME_CONFIG.DEFAULT_HEIGHT / 2 + Random.Range(0, GAME_CONFIG.DEFAULT_HEIGHT - 10);
+        } while (Mathf.Abs(playerX - spawnX) <= 100 || Mathf.Abs(playerY - spawnY) <= 50);
+        
+
+
+
+        enemyController.SpawnEnemy(new Vector3(spawnX, spawnY, 0));
     }
 
 

@@ -78,7 +78,21 @@ public class GeneratePlayfield : MonoBehaviour
 
     void CreateASquare(float x, float y)
     {
+        //Vector3 size = squareObstaclePrefab.GetComponentInChildren<Renderer>().bounds.size;
+
+        /*int currentCombinedObstacles = 0;
+        while (currentCombinedObstacles <= GAME_CONFIG.MAX_COMBINED_OBSTACLES)
+        {
+
+
+            currentCombinedObstacles++;
+        }
+
+
         // Randomly combine multiple squares
+        GameObject obstacle = Instantiate(squareObstaclePrefab);*/
+
+
         GameObject newObstacle = Instantiate(squareObstaclePrefab);
         newObstacle.transform.parent = gameObject.transform;
         newObstacle.transform.position = new Vector3(x, y, -2);

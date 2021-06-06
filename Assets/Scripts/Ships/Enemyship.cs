@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -10,9 +11,12 @@ public class Enemyship : Spaceship
 
     private void Awake()
     {
+        bulletController = GameObject.Find("Main Camera").GetComponentInChildren<BulletController>();
         agent.updateRotation = false;
         agent.updateUpAxis = false;
     }
+
+    
 
     public Enemyship()
     {
@@ -26,7 +30,14 @@ public class Enemyship : Spaceship
     {
         if (player == null)
         {
-            player = GameObject.Find("Player").transform;
+            try
+            {
+                player = GameObject.Find("Player").transform;
+            } catch (Exception err)
+            {
+                // Dead player -> Should not happen anyway, test only
+                return;
+            }
         }
 
         agent.SetDestination(player.transform.position);

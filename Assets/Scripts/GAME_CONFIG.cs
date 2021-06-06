@@ -6,8 +6,8 @@ public static class GAME_CONFIG
 {
     // Configuration for level RENDERING
     public const int LEVEL_BOUNDS_THICKNESS = 3; // default == 3
-    public const int DEFAULT_WIDTH = 300; // default == 300
-    public const int DEFAULT_HEIGHT = 300; // default == 300
+    public const int DEFAULT_WIDTH = 500; // default == 300
+    public const int DEFAULT_HEIGHT = 500; // default == 300
     public const int RENDER_OUTSIDE_BOUNDS = 222; // default == 222
     public const int STARS_DISTANCE = 30; // default == 30
     public const int STARS_DISTANCE_INTERVAL = 9; // default == 9
@@ -18,4 +18,5 @@ public static class GAME_CONFIG
     public const int OBSTACLE_DISTANCE = 60; // default == 60
     public const int OBSTACLE_CHANCE = 2; // default == 2
     public const int OBSTACLE_DISTANCE_INTERVAL = 9; // default == 9
+    public const int MAX_COMBINED_OBSTACLES = 10; // default == 10
 }

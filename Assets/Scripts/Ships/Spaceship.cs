@@ -8,6 +8,8 @@ public class Spaceship : MonoBehaviour
     public float MAX_HP = 100;
     public float HP = 100;
 
+    public bool alive;
+
     // Spaceship config -> can be changed by player or enemy, otherwise default values
     private float maxSpeed = 5f;
     private float currentSpeed = 50f;
@@ -37,6 +39,11 @@ public class Spaceship : MonoBehaviour
     public Spaceship()
     {
 
+    }
+
+    private void Awake()
+    {
+        bulletController = GameObject.Find("Main Camera").GetComponentInChildren<BulletController>();
     }
 
     public void Move(bool moving)
@@ -83,7 +90,27 @@ public class Spaceship : MonoBehaviour
             {
                 HP -= 20;
                 HPBarObj.sizeDelta = new Vector2((HP/MAX_HP) * 300f, HPBarObj.sizeDelta.y);
+
+                if (HP <= 0)
+                {
+                    Deactivate();
+                }
             }
         }
+    }
+
+    public void Activate(Vector3 spawnPosition)
+    {
+        gameObject.SetActive(true);
+        transform.position = spawnPosition;
+        alive = true;
+        HP = 100;
+        HPBarObj.sizeDelta = new Vector2((HP / MAX_HP) * 300f, HPBarObj.sizeDelta.y);
+    }
+
+    public void Deactivate()
+    {
+        gameObject.SetActive(false);
+        alive = false;
     }
 }

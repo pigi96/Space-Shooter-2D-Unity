@@ -8,5 +8,7 @@ public class Playership : Spaceship
     public Playership()
     {
         this.bulletType = BulletType.Player;
+        this.MAX_HP = 10000;
+        this.HP = 10000;
     }
 }
