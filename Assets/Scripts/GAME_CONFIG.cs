@@ -19,4 +19,27 @@ public static class GAME_CONFIG
     public const int OBSTACLE_CHANCE = 2; // default == 2
     public const int OBSTACLE_DISTANCE_INTERVAL = 9; // default == 9
     public const int MAX_COMBINED_OBSTACLES = 10; // default == 10
+
+
+
+
+
+
+
+
+
+
+
+
+    // Setup variables from main-menu, also with defaults underlaid
+    // ------------------------------------------------------------
+    public static int max_enemies = 10;
+    public static int spawn_timer = 3;
+
+    // PLAYER
+    public static ShipStats playerShipSettings = new ShipStats(100, 100, 20, 33, 5000, BulletType.Player);
+
+    // ENEMIES
+    public static ShipStats enemiesShipSettings = new ShipStats(50, 50, 7, 25, 5000, BulletType.Enemy);
+    // ------------------------------------------------------------
 }
