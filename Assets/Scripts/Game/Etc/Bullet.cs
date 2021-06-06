@@ -10,6 +10,8 @@ public class Bullet : MonoBehaviour
 
     public float currentDistance = 0;
 
+    public Sprite singleBullet, doubleBullet;
+
     public void Deactivate()
     {
         alive = false;
@@ -17,15 +19,24 @@ public class Bullet : MonoBehaviour
         gameObject.SetActive(false);
     }
 
-    public void Activate(Vector3 startPos, Quaternion rotation, BulletType type, float bulletDamage)
+    public void Activate(Vector3 startPos, Quaternion rotation, ShipStats shipStats)
     {
         alive = true;
-        this.type = type;
+        this.type = shipStats.bulletType;
         gameObject.SetActive(true);
-        this.type = type;
+        this.type = shipStats.bulletType;
         transform.position = startPos;
         transform.rotation = rotation;
-        this.bulletDamage = bulletDamage;
+        this.bulletDamage = shipStats.bulletDamage;
+
+        if (!shipStats.doubleDamage)
+        {
+            gameObject.GetComponentInChildren<SpriteRenderer>().sprite = singleBullet;
+        } else
+        {
+            gameObject.GetComponentInChildren<SpriteRenderer>().sprite = doubleBullet;
+            this.bulletDamage *= 2;
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D other)

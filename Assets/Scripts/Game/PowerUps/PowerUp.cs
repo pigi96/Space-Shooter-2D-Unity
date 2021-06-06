@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PowerUp : MonoBehaviour
 {
-    public PowerUpType PowerUpType;
+    public PowerUpType powerUpType;
 
     public float duration;
 
@@ -14,7 +14,7 @@ public class PowerUp : MonoBehaviour
     {
         gameObject.SetActive(true);
         alive = true;
-        this.PowerUpType = powerUpType;
+        this.powerUpType = PowerUpType.Armor;
     }
 
     public void Deactivate()
@@ -25,12 +25,18 @@ public class PowerUp : MonoBehaviour
 
     public void PowerUpFunction(ShipStats shipStats)
     {
-        if (this.PowerUpType == PowerUpType.Repair)
+        if (this.powerUpType == PowerUpType.Repair)
         {
             shipStats.Repair();
-        } else if (this.PowerUpType == PowerUpType.Armor)
+        } else if (this.powerUpType == PowerUpType.Armor)
         {
             shipStats.Replenish();
+        } else if (this.powerUpType == PowerUpType.Speed)
+        {
+            shipStats.DoubleSpeed();
+        } else if (this.powerUpType == PowerUpType.Damage)
+        {
+            shipStats.DoubleDamage();
         }
     }
 

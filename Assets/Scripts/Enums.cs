@@ -18,4 +18,6 @@ public enum PowerUpType
 {
     Repair = 0,
     Armor = 1,
+    Speed = 3,
+    Damage = 4,
 }

@@ -36,10 +36,10 @@ public static class GAME_CONFIG
     public static int max_enemies = 10;
     public static int spawn_timer = 1;
 
-    // PLAYER
+    // PLAYER defaults
     public static ShipStats playerShipSettings = new ShipStats(20, 20, 1, 33, 222, BulletType.Player);
 
-    // ENEMIES
+    // ENEMIES defaults
     public static ShipStats enemiesShipSettings = new ShipStats(3, 3, 1, 25, 222, BulletType.Enemy);
     // ------------------------------------------------------------
 }

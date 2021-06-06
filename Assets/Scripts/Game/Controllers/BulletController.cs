@@ -9,7 +9,7 @@ public class BulletController : MonoBehaviour
 
     public List<Bullet> bullets = new List<Bullet>();
 
-    public void ShootBullet(Vector3 startPos, Quaternion rotation, BulletType type, float bulletDamage)
+    public void ShootBullet(Vector3 startPos, Quaternion rotation, ShipStats shipStats)
     {
         bool reusedBullet = false;
         for (int i = 0; i < bullets.Count; i++)
@@ -17,7 +17,7 @@ public class BulletController : MonoBehaviour
             if (!bullets[i].alive)
             {
                 reusedBullet = true;
-                bullets[i].Activate(startPos, rotation, type, bulletDamage);
+                bullets[i].Activate(startPos, rotation, shipStats);
                 break;
             }
         }
@@ -26,7 +26,7 @@ public class BulletController : MonoBehaviour
         {
             GameObject newBullet = Instantiate(bulletPrefab, new Vector3(0, 0, 0), Quaternion.identity);
             newBullet.transform.parent = GameObject.Find("Bullets").transform;
-            newBullet.GetComponentInChildren<Bullet>().Activate(startPos, rotation, type, bulletDamage);
+            newBullet.GetComponentInChildren<Bullet>().Activate(startPos, rotation, shipStats);
             bullets.Add(newBullet.GetComponentInChildren<Bullet>());
         }
     }

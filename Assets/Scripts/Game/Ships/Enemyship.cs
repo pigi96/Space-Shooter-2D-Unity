@@ -55,7 +55,7 @@ public class Enemyship : Spaceship
         float rot_z = Mathf.Atan2(diff.y, diff.x) * Mathf.Rad2Deg;
         Quaternion rotation = Quaternion.Euler(0f, 0f, rot_z - 90);
 
-        bulletController.ShootBullet(transform.position, rotation, shipStats.bulletType, shipStats.bulletDamage);
+        bulletController.ShootBullet(transform.position, rotation, shipStats);
     }
     public void OnTriggerEnter2D(Collider2D other)
     {

@@ -36,6 +36,7 @@ public class ShipStats
     public float velocity { set; get; }
     public float torque { set; get; }
     public BulletType bulletType { set; get; }
+    public bool doubleDamage { set; get; }
 
     public void Reset()
     {
@@ -44,6 +45,7 @@ public class ShipStats
         bulletDamage = baseBulletDamage;
         velocity = baseVelocity;
         torque = baseTorque;
+        doubleDamage = true;
     }
 
     /*public void IncreaseBulletDamage(float multiplier)
@@ -74,5 +76,25 @@ public class ShipStats
     public void Replenish()
     {
         armor = maxArmor;
+    }
+
+    public void DoubleSpeed()
+    {
+        velocity = 2 * baseVelocity;
+    }
+
+    public void ResetSpeed()
+    {
+        velocity = baseVelocity;
+    }
+
+    public void DoubleDamage()
+    {
+        doubleDamage = true;
+    }
+
+    public void ResetDamage()
+    {
+        doubleDamage = false;
     }
 }
