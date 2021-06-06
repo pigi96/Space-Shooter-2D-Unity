@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class Playership : Spaceship
 {
+    public float scoreInt;
     public Text score;
     public RectTransform hpBar;
 
@@ -30,5 +31,11 @@ public class Playership : Spaceship
                 }
             }
         }
+    }
+
+    public void IncrementScore(float score)
+    {
+        scoreInt += score;
+        this.score.text = scoreInt + "";
     }
 }

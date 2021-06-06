@@ -26,8 +26,9 @@ public class Enemyship : Spaceship
         {
             try
             {
-                player = GameObject.Find("Player").transform;
-            } catch (Exception err)
+                player = GameObject.Find("Player").transform;    
+            }
+            catch (Exception err)
             {
                 // Dead player -> Should not happen anyway, test only
                 return;
@@ -56,4 +57,22 @@ public class Enemyship : Spaceship
 
         bulletController.ShootBullet(transform.position, rotation, shipStats.bulletType, shipStats.bulletDamage);
     }
+    public void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Bullet"))
+        {
+            if (other.gameObject.GetComponentInChildren<Bullet>().type != shipStats.bulletType)
+            {
+                shipStats.TakeDamage(other.gameObject.GetComponentInChildren<Bullet>().bulletDamage);
+                HPBarObj.sizeDelta = new Vector2((shipStats.HP / shipStats.maxHP) * 300f, HPBarObj.sizeDelta.y);
+
+                if (shipStats.HP <= 0)
+                {
+                    player.gameObject.GetComponentInChildren<Playership>().IncrementScore(shipStats.maxHP);
+                    Deactivate();
+                }
+            }
+        }
+    }
+
 }

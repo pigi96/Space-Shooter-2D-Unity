@@ -37,9 +37,9 @@ public static class GAME_CONFIG
     public static int spawn_timer = 1;
 
     // PLAYER
-    public static ShipStats playerShipSettings = new ShipStats(100, 100, 20, 33, 222, BulletType.Player);
+    public static ShipStats playerShipSettings = new ShipStats(20, 20, 1, 33, 222, BulletType.Player);
 
     // ENEMIES
-    public static ShipStats enemiesShipSettings = new ShipStats(50, 50, 7, 25, 222, BulletType.Enemy);
+    public static ShipStats enemiesShipSettings = new ShipStats(3, 3, 1, 25, 222, BulletType.Enemy);
     // ------------------------------------------------------------
 }
