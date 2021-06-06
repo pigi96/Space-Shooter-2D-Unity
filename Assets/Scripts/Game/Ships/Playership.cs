@@ -30,6 +30,10 @@ public class Playership : Spaceship
                     // Invulnerable right now
                 }
             }
+        } else if (other.CompareTag("PowerUp"))
+        {
+            other.gameObject.GetComponentInChildren<PowerUp>().PowerUpFunction(shipStats);
+            hpBar.sizeDelta = new Vector2((shipStats.HP / shipStats.maxHP) * 300f, hpBar.sizeDelta.y);
         }
     }
 

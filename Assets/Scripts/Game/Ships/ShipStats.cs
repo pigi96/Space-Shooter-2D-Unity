@@ -65,4 +65,14 @@ public class ShipStats
             armor = 0;
         }
     }
+
+    public void Repair()
+    {
+        HP = maxHP;
+    }
+
+    public void Replenish()
+    {
+        armor = maxArmor;
+    }
 }
