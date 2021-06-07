@@ -14,4 +14,14 @@ public class SceneManagerio : MonoBehaviour
     {
         SceneManager.LoadScene(1);
     }
+
+    public static void ChangeToMainMenuStatic()
+    {
+        SceneManager.LoadScene(0);
+    }
+
+    public static void ChangeToGameFieldStatic()
+    {
+        SceneManager.LoadScene(1);
+    }
 }

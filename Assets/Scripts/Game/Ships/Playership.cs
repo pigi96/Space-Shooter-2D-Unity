@@ -30,7 +30,7 @@ public class Playership : Spaceship
 
                 if (shipStats.HP <= 0)
                 {
-                    // Invulnerable right now
+                    GameObject.Find("Main Camera").GetComponentInChildren<GameController>().GameOver();
                 }
             }
         } else if (other.CompareTag("PowerUp"))

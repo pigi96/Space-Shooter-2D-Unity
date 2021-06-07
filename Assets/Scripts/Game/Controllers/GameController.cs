@@ -16,6 +16,14 @@ public class GameController : MonoBehaviour
     public bool pause = false;
     public int enemiesLeft;
     public int enemiesSpawned;
+    public bool success;
+
+    GameUIController gameUIController;
+
+    void Awake()
+    {
+        gameUIController = gameObject.GetComponentInChildren<GameUIController>();    
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -37,6 +45,21 @@ public class GameController : MonoBehaviour
         }
     }
 
+    public void GameOver()
+    {
+        success = false;
+        gameUIController.GameOver(false, 0);
+        Pause();
+    }
+
+    public void NextLevel()
+    {
+        int nextLevel = GAME_CONFIG.LEVEL;
+        GAME_CONFIG.LEVEL = nextLevel+1;
+        LevelGeneration.CreateShipStatsForLevel(GAME_CONFIG.LEVEL);
+        SceneManagerio.ChangeToGameFieldStatic();
+    }
+
     public void EnemyKilled()
     {
         enemiesLeft--;
@@ -46,6 +69,13 @@ public class GameController : MonoBehaviour
         if (enemiesLeft <= 0)
         {
             print("Level Completed!");
+            int currentLevel = PlayerPrefs.GetInt("Current_Level", 0);
+            currentLevel += 1;
+            PlayerPrefs.SetInt("Current_Level", currentLevel);
+            PlayerPrefs.Save();
+            success = true;
+            gameUIController.GameOver(true, 0);
+            Pause();
         }
     }
 

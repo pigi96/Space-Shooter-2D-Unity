@@ -10,6 +10,7 @@ public class LevelButton : MonoBehaviour
     public void OnClick()
     {
         GAME_CONFIG.LEVEL = level;
+        LevelGeneration.CreateShipStatsForLevel(GAME_CONFIG.LEVEL);
         SceneManager.LoadScene(1);
     }
 }

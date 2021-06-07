@@ -50,10 +50,29 @@ public static class GAME_CONFIG
 
 public static class LevelConfiguration
 {
-    public static int enemiesToKill { get; set; } = 5;
+    public static int enemiesToKill { get; set; } = 2;
     public static int enemiesSpawnTimer { get; set; } = 3;
     public static int powerUpSpawnTimer { get; set; } = 3;
     public static int enemiesShootingSpeed { get; set; } = 2;
     public static int playfieldWidth { get; set; } = 300;
     public static int playfieldHeight { get; set; } = 300;
+}
+
+public static class LevelGeneration
+{
+    public static void CreateShipStatsForLevel(int level)
+    {
+        float HP = 3 + level;
+        // skip armor for now
+        float bulletDamage = 9 + level;
+        // velocity is ignored for now
+        // turing speed is ignored
+        // both buffs are not possible anyway for now
+        // ...
+        GAME_CONFIG.enemiesShipSettings = new ShipStats(HP, 3, bulletDamage, 25, 300, BulletType.Enemy, 5f, 5f);
+
+        LevelConfiguration.enemiesToKill = 1 + level/5;
+        LevelConfiguration.playfieldWidth = 300 + level * 5;
+        LevelConfiguration.playfieldHeight = 300 + level * 5;
+    }
 }
