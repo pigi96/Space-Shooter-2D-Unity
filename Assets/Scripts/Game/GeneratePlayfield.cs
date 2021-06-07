@@ -10,8 +10,9 @@ public class GeneratePlayfield : MonoBehaviour
     public GameObject[] obstacles;
 
     // Start is called before the first frame update
-    void Start()
-    {   
+    void Awake()
+    {
+        Random.InitState(GAME_CONFIG.LEVEL);
         playfieldObject.GetComponent<Transform>().localScale = new Vector3(GAME_CONFIG.DEFAULT_WIDTH + GAME_CONFIG.RENDER_OUTSIDE_BOUNDS, GAME_CONFIG.DEFAULT_HEIGHT + GAME_CONFIG.RENDER_OUTSIDE_BOUNDS, 0);
         CreateBackgroundBounds();
         //CreateBackgroundStars();

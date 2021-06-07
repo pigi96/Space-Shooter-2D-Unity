@@ -14,6 +14,8 @@ public class EnemyController : MonoBehaviour
     {
         if (blockSpawning) return;
 
+
+
         bool reusedEnemey = false;
         for (int i = 0; i < enemies.Count; i++)
         {

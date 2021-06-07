@@ -34,6 +34,8 @@ public static class GAME_CONFIG
 
     // Setup variables from main-menu, also with defaults underlaid
     // ------------------------------------------------------------
+    public static int LEVEL = 0;
+
     public static int max_enemies = 55;
     public static int enemies_spawn_timer = 1;
     public static int max_power_ups = 10;
