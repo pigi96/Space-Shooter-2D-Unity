@@ -6,6 +6,7 @@ public class GameController : MonoBehaviour
 {
     public Playership playershipScr;
     public EnemyController enemyController;
+    public PowerUpController powerUpController;
 
     // Start is called before the first frame update
     void Start()
@@ -18,24 +19,26 @@ public class GameController : MonoBehaviour
     {
         ControlPlayer();
         ControlEnemies();
+        ControlPowerUps();
     }
 
 
     void ControlPlayer()
     {
+        playershipScr.shipStats.Update(Time.deltaTime);
         playershipScr.Move(PlayerMoveInput());
         playershipScr.Rotate(PlayerRotateInput());
         playershipScr.Shoot(PlayerHasShot());
         transform.position = new Vector3(playershipScr.transform.position.x, playershipScr.transform.position.y, -10);
     }
 
-    float spawnTimer = 0;
+    float enemiesSpawnTimer = 0;
     void ControlEnemies()
     {
-        spawnTimer += Time.deltaTime;
-        if (spawnTimer > GAME_CONFIG.spawn_timer) {
+        enemiesSpawnTimer += Time.deltaTime;
+        if (enemiesSpawnTimer > GAME_CONFIG.enemies_spawn_timer) {
             SpawnEnemy();
-            spawnTimer = 0;
+            enemiesSpawnTimer = 0;
         }
     }
 
@@ -53,6 +56,25 @@ public class GameController : MonoBehaviour
         } while (Mathf.Abs(playerX - spawnX) <= 100 || Mathf.Abs(playerY - spawnY) <= 50);
 
         enemyController.SpawnEnemy(new Vector3(spawnX, spawnY, 0));
+    }
+
+    float powerUpSpawnTimer = 0;
+    void ControlPowerUps()
+    {
+        powerUpSpawnTimer += Time.deltaTime;
+        if (powerUpSpawnTimer > GAME_CONFIG.power_up_spawn_timer)
+        {
+            SpawnPowerUp();
+            powerUpSpawnTimer = 0;
+        }
+    }
+
+    void SpawnPowerUp()
+    {
+        float spawnX = 0;
+        float spawnY = 0;
+
+        powerUpController.SpawnPowerUp(new Vector3(spawnX, spawnY, 0));
     }
 
 

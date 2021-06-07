@@ -35,7 +35,7 @@ public class Playership : Spaceship
             }
         } else if (other.CompareTag("PowerUp"))
         {
-            other.gameObject.GetComponentInChildren<PowerUp>().PowerUpFunction(shipStats);
+            PowerUpPickedUp(other.gameObject);
         }
 
         UpdateUI();
@@ -47,6 +47,12 @@ public class Playership : Spaceship
         armorBar.sizeDelta = new Vector2((shipStats.armor / shipStats.maxArmor) * 300f, armorBar.sizeDelta.y);
         hpBarText.text = shipStats.HP + "";
         armorBarText.text = shipStats.armor + "";
+    }
+
+    void PowerUpPickedUp(GameObject powerUp)
+    {
+        powerUp.gameObject.GetComponentInChildren<PowerUp>().PowerUpFunction(shipStats);
+        powerUp.gameObject.GetComponentInChildren<PowerUp>().Deactivate();
     }
 
     public void IncrementScore(float score)

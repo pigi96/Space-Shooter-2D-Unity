@@ -3,23 +3,26 @@ using UnityEngine;
 
 public class ShipStats
 {
+    // Base configuation for ships at runtime
     public float maxHP { set; get; }
     public float maxArmor { set; get; }
     public float baseBulletDamage { set; get; }
     public float baseVelocity { set; get; }
     public float baseTorque { set; get; }
+    public float speedBuffTime { set; get; }
+    public float damageBuffTime { set; get; }
 
     public ShipStats(ShipStats copyFrom)
     {
-        Init(copyFrom.maxHP, copyFrom.maxArmor, copyFrom.baseBulletDamage, copyFrom.baseVelocity, copyFrom.baseTorque, copyFrom.bulletType);
+        Init(copyFrom.maxHP, copyFrom.maxArmor, copyFrom.baseBulletDamage, copyFrom.baseVelocity, copyFrom.baseTorque, copyFrom.bulletType, copyFrom.speedBuffTime, copyFrom.damageBuffTime);
     }
 
-    public ShipStats(float maxHP, float maxArmor, float baseBulletDamage, float baseVelocity, float baseTorque, BulletType type)
+    public ShipStats(float maxHP, float maxArmor, float baseBulletDamage, float baseVelocity, float baseTorque, BulletType type, float speedBuffTime, float damageBuffTime)
     {
-        Init(maxHP, maxArmor, baseBulletDamage, baseVelocity, baseTorque, type);
+        Init(maxHP, maxArmor, baseBulletDamage, baseVelocity, baseTorque, type, speedBuffTime, damageBuffTime);
     }
 
-    void Init(float maxHP, float maxArmor, float baseBulletDamage, float baseVelocity, float baseTorque, BulletType type)
+    void Init(float maxHP, float maxArmor, float baseBulletDamage, float baseVelocity, float baseTorque, BulletType type, float speedBuffTime, float damageBuffTime)
     {
         this.maxHP = maxHP;
         this.maxArmor = maxArmor;
@@ -27,16 +30,20 @@ public class ShipStats
         this.baseVelocity = baseVelocity;
         this.baseTorque = baseTorque;
         this.bulletType = type;
+        this.speedBuffTime = speedBuffTime;
+        this.damageBuffTime = damageBuffTime;
         Reset();
     }
 
+    // InGame life variables
     public float HP { set; get; }
     public float armor { set; get; }
     public float bulletDamage { set; get; }
     public float velocity { set; get; }
     public float torque { set; get; }
     public BulletType bulletType { set; get; }
-    public bool doubleDamage { set; get; }
+    public float doubleDamage { set; get; }
+    public float doubleSpeed { set; get; }
 
     public void Reset()
     {
@@ -45,18 +52,9 @@ public class ShipStats
         bulletDamage = baseBulletDamage;
         velocity = baseVelocity;
         torque = baseTorque;
-        doubleDamage = true;
+        doubleDamage = 0;
+        doubleSpeed = 0;
     }
-
-    /*public void IncreaseBulletDamage(float multiplier)
-    {
-        bulletDamage *= multiplier;
-    }
-
-    public void ResetBulletDamage()
-    {
-        bulletDamage = baseBulletDamage;
-    }*/
 
     public void TakeDamage(float damage)
     {
@@ -80,21 +78,32 @@ public class ShipStats
 
     public void DoubleSpeed()
     {
-        velocity = 2 * baseVelocity;
-    }
-
-    public void ResetSpeed()
-    {
-        velocity = baseVelocity;
+        doubleSpeed = speedBuffTime;
     }
 
     public void DoubleDamage()
     {
-        doubleDamage = true;
+        doubleDamage = damageBuffTime;
     }
 
-    public void ResetDamage()
+    public void Update(float deltaTime)
     {
-        doubleDamage = false;
+        doubleSpeed -= deltaTime;
+        if (doubleSpeed > 0)
+        {
+            velocity = 2 * baseVelocity;
+        } else
+        {
+            velocity = baseVelocity;
+        }
+
+        doubleDamage -= deltaTime;
+        if (doubleDamage > 0)
+        {
+            bulletDamage = 2 * baseBulletDamage;
+        } else
+        {
+            bulletDamage = baseBulletDamage;
+        }
     }
 }

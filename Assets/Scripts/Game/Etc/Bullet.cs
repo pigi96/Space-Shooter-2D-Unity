@@ -4,6 +4,7 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
     public BulletType type;
+    public ShipStats shipStats;
     public float bulletDamage;
 
     public bool alive = false;
@@ -28,14 +29,14 @@ public class Bullet : MonoBehaviour
         transform.position = startPos;
         transform.rotation = rotation;
         this.bulletDamage = shipStats.bulletDamage;
+        this.shipStats = shipStats;
 
-        if (!shipStats.doubleDamage)
+        if (shipStats.doubleDamage <= 0)
         {
             gameObject.GetComponentInChildren<SpriteRenderer>().sprite = singleBullet;
         } else
         {
             gameObject.GetComponentInChildren<SpriteRenderer>().sprite = doubleBullet;
-            this.bulletDamage *= 2;
         }
     }
 

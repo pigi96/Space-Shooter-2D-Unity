@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
@@ -11,7 +12,8 @@ public class PowerUpController : MonoBehaviour
 
     public void SpawnPowerUp(Vector3 startPos)
     {
-        int rando = Random.Range(0, 1);
+        Array values = Enum.GetValues(typeof(PowerUpType));
+        PowerUpType selectedPower = (PowerUpType)values.GetValue(UnityEngine.Random.Range(0, values.Length));
 
         bool reusedPowerup = false;
         for (int i = 0; i < powerUps.Count; i++)
@@ -19,7 +21,7 @@ public class PowerUpController : MonoBehaviour
             if (!powerUps[i].alive)
             {
                 reusedPowerup = true;
-                powerUps[i].Activate(startPos, 0);
+                powerUps[i].Activate(startPos, selectedPower);
                 break;
             }
         }
@@ -30,10 +32,5 @@ public class PowerUpController : MonoBehaviour
             newPowerUp.GetComponentInChildren<PowerUp>().Activate(startPos, 0);
             powerUps.Add(newPowerUp.GetComponentInChildren<PowerUp>());
         }
-    }
-
-    public void Update()
-    {
-        
     }
 }
