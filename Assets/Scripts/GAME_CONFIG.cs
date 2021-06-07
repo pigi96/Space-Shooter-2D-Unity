@@ -50,7 +50,7 @@ public static class GAME_CONFIG
 
 public static class LevelConfiguration
 {
-    public static int enemiesToKill { get; set; } = 10;
+    public static int enemiesToKill { get; set; } = 5;
     public static int enemiesSpawnTimer { get; set; } = 3;
     public static int powerUpSpawnTimer { get; set; } = 3;
     public static int enemiesShootingSpeed { get; set; } = 2;

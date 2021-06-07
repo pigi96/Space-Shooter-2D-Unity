@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameController : MonoBehaviour
 {
@@ -10,12 +11,18 @@ public class GameController : MonoBehaviour
     public Scrolling scrolling;
     public BulletController bulletController;
 
+    public Text enemiesLeftText;
+
     public bool pause = false;
+    public int enemiesLeft;
+    public int enemiesSpawned;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        enemiesLeft = LevelConfiguration.enemiesToKill;
+        enemiesSpawned = 0;
+        enemiesLeftText.text = enemiesLeft + "";
     }
 
     // Update is called once per frame
@@ -30,6 +37,17 @@ public class GameController : MonoBehaviour
         }
     }
 
+    public void EnemyKilled()
+    {
+        enemiesLeft--;
+
+        enemiesLeftText.text = enemiesLeft + "";
+
+        if (enemiesLeft <= 0)
+        {
+            print("Level Completed!");
+        }
+    }
 
     void ControlPlayer()
     {
@@ -50,8 +68,9 @@ public class GameController : MonoBehaviour
     void ControlEnemies()
     {
         enemiesSpawnTimer += Time.deltaTime;
-        if (enemiesSpawnTimer > LevelConfiguration.enemiesSpawnTimer) {
+        if (enemiesSpawnTimer > LevelConfiguration.enemiesSpawnTimer && enemiesSpawned < LevelConfiguration.enemiesToKill) {
             SpawnEnemy();
+            enemiesSpawned++;
             enemiesSpawnTimer = 0;
         }
 

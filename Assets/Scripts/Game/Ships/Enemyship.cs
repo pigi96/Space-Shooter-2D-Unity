@@ -88,6 +88,7 @@ public class Enemyship : Spaceship
 
                 if (shipStats.HP <= 0)
                 {
+                    GameObject.Find("Main Camera").GetComponentInChildren<GameController>().EnemyKilled();
                     player.gameObject.GetComponentInChildren<Playership>().IncrementScore(shipStats.maxHP);
                     Deactivate();
                 }
