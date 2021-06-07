@@ -6,14 +6,15 @@ using UnityEngine.AI;
 public class GeneratePlayfield : MonoBehaviour
 {
     public GameObject playfieldObject;
-    public GameObject starPefab, boundsPrefab, circleObstaclePrefab, squareObstaclePrefab, triangleObstaclePrefab;
+    public GameObject starPefab, boundsPrefab;
+    public GameObject[] obstacles;
 
     // Start is called before the first frame update
     void Start()
     {   
         playfieldObject.GetComponent<Transform>().localScale = new Vector3(GAME_CONFIG.DEFAULT_WIDTH + GAME_CONFIG.RENDER_OUTSIDE_BOUNDS, GAME_CONFIG.DEFAULT_HEIGHT + GAME_CONFIG.RENDER_OUTSIDE_BOUNDS, 0);
         CreateBackgroundBounds();
-        CreateBackgroundStars();
+        //CreateBackgroundStars();
         CreateGameObstacles();
         gameObject.GetComponentInChildren<NavMeshSurface2d>().BuildNavMesh();
     }
@@ -53,42 +54,10 @@ public class GeneratePlayfield : MonoBehaviour
 
     void CreateObstacle(float x, float y)
     {
-        int select = Random.Range(0, 3);
-        switch (select)
-        {
-            case 0:
-                CreateACircle(x, y);
-                break;
-            case 1:
-                CreateASquare(x, y);
-                break;
-            case 2:
-                CreateATriangle(x, y);
-                break;
-        }
-    }
-
-    void CreateACircle(float x, float y)
-    {
-        // Simple circles of different sizes
-        GameObject newObstacle = Instantiate(circleObstaclePrefab);
+        int select = Random.Range(0, obstacles.Length);
+        GameObject newObstacle = Instantiate(obstacles[select]);
         newObstacle.transform.parent = gameObject.transform;
-        newObstacle.transform.position = new Vector3(x, y, -2);
-    }
-
-    void CreateASquare(float x, float y)
-    {
-        GameObject newObstacle = Instantiate(squareObstaclePrefab);
-        newObstacle.transform.parent = gameObject.transform;
-        newObstacle.transform.position = new Vector3(x, y, -2);
-    }
-
-    void CreateATriangle(float x, float y)
-    {
-        // Randomly combine multiple triangles
-        GameObject newObstacle = Instantiate(triangleObstaclePrefab);
-        newObstacle.transform.parent = gameObject.transform;
-        newObstacle.transform.position = new Vector3(x, y, -2);
+        newObstacle.transform.position = new Vector3(x, y, 0);
     }
 
     void CreateBackgroundStars()

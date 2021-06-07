@@ -14,6 +14,8 @@ public class Spaceship : MonoBehaviour
     public RectTransform HPBarObj;
     public RectTransform HPCanvas;
 
+    public Sprite[] sprites;
+
     // Upgrading system for hp, armor, bullet damage, velocity and rotation speed
     public void CreateShip(ShipStats shipStats)
     {
@@ -74,6 +76,8 @@ public class Spaceship : MonoBehaviour
     public void Activate(Vector3 spawnPosition)
     {
         gameObject.SetActive(true);
+        int random = Random.Range(0, sprites.Length);
+        gameObject.GetComponentInChildren<SpriteRenderer>().sprite = sprites[random]; 
         transform.position = spawnPosition;
         alive = true;
         shipStats.Reset();

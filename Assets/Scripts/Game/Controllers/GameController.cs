@@ -7,6 +7,7 @@ public class GameController : MonoBehaviour
     public Playership playershipScr;
     public EnemyController enemyController;
     public PowerUpController powerUpController;
+    public Scrolling scrolling;
 
     // Start is called before the first frame update
     void Start()
@@ -30,6 +31,7 @@ public class GameController : MonoBehaviour
         playershipScr.Rotate(PlayerRotateInput());
         playershipScr.Shoot(PlayerHasShot());
         transform.position = new Vector3(playershipScr.transform.position.x, playershipScr.transform.position.y, -10); // Camera update
+        scrolling.UpdatePosition(playershipScr.transform);
     }
 
     float enemiesSpawnTimer = 0;
