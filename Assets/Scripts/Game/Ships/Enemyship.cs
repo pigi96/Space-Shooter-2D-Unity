@@ -18,6 +18,7 @@ public class Enemyship : Spaceship
     }
 
     float currentTime = 0;
+    float pathfind = 0;
     // Move later to GameController for more efficiency
     public void AI()
     {
@@ -34,14 +35,30 @@ public class Enemyship : Spaceship
             }
         }
 
-        agent.SetDestination(player.transform.position);
-
+        pathfind -= Time.deltaTime;
+        if (pathfind <= 0)
+        {
+            agent.SetDestination(player.transform.position);
+            pathfind = 0.3f;
+        }
 
         currentTime += Time.deltaTime;
-        if (currentTime >= GAME_CONFIG.enemy_shooting_speed)
+        if (currentTime >= LevelConfiguration.enemiesShootingSpeed)
         {
             ShootInDirection();
         }
+    }
+
+    public void Pause()
+    {
+        agent.isStopped = true;
+        agent.SetDestination(transform.position);
+    }
+
+    public void Resume()
+    {
+        agent.isStopped = false;
+        agent.SetDestination(player.transform.position);
     }
 
     public void ShootInDirection()

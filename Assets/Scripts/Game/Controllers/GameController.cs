@@ -8,6 +8,9 @@ public class GameController : MonoBehaviour
     public EnemyController enemyController;
     public PowerUpController powerUpController;
     public Scrolling scrolling;
+    public BulletController bulletController;
+
+    public bool pause = false;
 
     // Start is called before the first frame update
     void Start()
@@ -18,9 +21,13 @@ public class GameController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        ControlPlayer();
-        ControlEnemies();
-        ControlPowerUps();
+        if (!pause)
+        {
+            ControlPlayer();
+            ControlEnemies();
+            ControlPowerUps();
+            ControlBullets();
+        }
     }
 
 
@@ -34,14 +41,40 @@ public class GameController : MonoBehaviour
         scrolling.UpdatePosition(playershipScr.transform);
     }
 
+    void ControlBullets()
+    {
+        bulletController.UpdateBullets();
+    }
+
     float enemiesSpawnTimer = 0;
     void ControlEnemies()
     {
         enemiesSpawnTimer += Time.deltaTime;
-        if (enemiesSpawnTimer > GAME_CONFIG.enemies_spawn_timer) {
+        if (enemiesSpawnTimer > LevelConfiguration.enemiesSpawnTimer) {
             SpawnEnemy();
             enemiesSpawnTimer = 0;
         }
+
+        enemyController.UpdateEnemies();
+    }
+
+    public void Pause()
+    {
+        pause = true;
+        playershipScr.Move(false);
+        playershipScr.Rotate(Direction.None);
+        enemyController.Pause();
+    }
+
+    public void Resume()
+    {
+        pause = false;
+        enemyController.Resume();
+    }
+
+    public void StopPlayer()
+    {
+        
     }
 
     // Use total random and let physics push it out + spawn outside camera field view
@@ -55,8 +88,8 @@ public class GameController : MonoBehaviour
         do
         {
             maxTry--;
-            spawnX = -GAME_CONFIG.DEFAULT_WIDTH / 2 + 10 + Random.Range(0, GAME_CONFIG.DEFAULT_WIDTH - 20);
-            spawnY = -GAME_CONFIG.DEFAULT_HEIGHT / 2 + 10 + Random.Range(0, GAME_CONFIG.DEFAULT_HEIGHT - 20);
+            spawnX = -LevelConfiguration.playfieldWidth / 2 + 10 + Random.Range(0, LevelConfiguration.playfieldWidth - 20);
+            spawnY = -LevelConfiguration.playfieldHeight / 2 + 10 + Random.Range(0, LevelConfiguration.playfieldHeight - 20);
         } while ((Mathf.Abs(playerX - spawnX) <= 100 || Mathf.Abs(playerY - spawnY) <= 50) && maxTry >= 0);
 
         enemyController.SpawnEnemy(new Vector3(spawnX, spawnY, 0));
@@ -66,7 +99,7 @@ public class GameController : MonoBehaviour
     void ControlPowerUps()
     {
         powerUpSpawnTimer += Time.deltaTime;
-        if (powerUpSpawnTimer > GAME_CONFIG.power_up_spawn_timer)
+        if (powerUpSpawnTimer > LevelConfiguration.powerUpSpawnTimer)
         {
             SpawnPowerUp();
             powerUpSpawnTimer = 0;
@@ -80,8 +113,8 @@ public class GameController : MonoBehaviour
         do
         {
             maxTry--;
-            spawnX = -GAME_CONFIG.DEFAULT_WIDTH / 2 + Random.Range(0, GAME_CONFIG.DEFAULT_WIDTH - 10);
-            spawnY = -GAME_CONFIG.DEFAULT_HEIGHT / 2 + Random.Range(0, GAME_CONFIG.DEFAULT_HEIGHT - 10);
+            spawnX = -LevelConfiguration.playfieldWidth / 2 + Random.Range(0, LevelConfiguration.playfieldWidth - 10);
+            spawnY = -LevelConfiguration.playfieldHeight / 2 + Random.Range(0, LevelConfiguration.playfieldHeight - 10);
             Collider2D[] obstaclesCollided = Physics2D.OverlapBoxAll(new Vector3(spawnX, spawnY, 0), new Vector3(6f, 5.11f, 1), 0);
             if (obstaclesCollided.Length == 0) break;
         } while (maxTry > 0);

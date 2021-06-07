@@ -44,17 +44,17 @@ public class Bullet : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Bullet"))
+        if (other.CompareTag("Bullet") && other.gameObject.GetComponentInChildren<Bullet>().type == gameObject.GetComponentInChildren<Bullet>().type)
         {
             return;
         }
 
-        if (type == BulletType.Enemy && other.CompareTag("Enemy"))
+        if (type == BulletType.Enemy && (other.CompareTag("Enemy") || other.CompareTag("PowerUp")))
         {
             return;
         }
 
-        if (type == BulletType.Player && other.CompareTag("Player"))
+        if (type == BulletType.Player && (other.CompareTag("Player") || other.CompareTag("PowerUp")))
         {
             return;
         }

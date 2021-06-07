@@ -35,7 +35,7 @@ public class EnemyController : MonoBehaviour
         }
     }
 
-    public void Update()
+    public void UpdateEnemies()
     {
         int alive = 0;
         for (int i = 0; i < enemies.Count; i++)
@@ -51,5 +51,27 @@ public class EnemyController : MonoBehaviour
             blockSpawning = true;
         else
             blockSpawning = false;
+    }
+
+    public void Pause()
+    {
+        for (int i = 0; i < enemies.Count; i++)
+        {
+            if (enemies[i].alive)
+            {
+                enemies[i].Pause();
+            }
+        }
+    }
+
+    public void Resume()
+    {
+        for (int i = 0; i < enemies.Count; i++)
+        {
+            if (enemies[i].alive)
+            {
+                enemies[i].Resume();
+            }
+        }
     }
 }

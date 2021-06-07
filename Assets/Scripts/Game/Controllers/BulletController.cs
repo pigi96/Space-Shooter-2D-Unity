@@ -31,7 +31,7 @@ public class BulletController : MonoBehaviour
         }
     }
 
-    public void Update()
+    public void UpdateBullets()
     {
         for (int i = 0; i < bullets.Count; i++)
         {

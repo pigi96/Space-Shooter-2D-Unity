@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 3485606551711423842}
   - component: {fileID: 6974058355242159046}
   - component: {fileID: 5819897718077827902}
+  - component: {fileID: 477426097209069008}
   m_Layer: 0
   m_Name: Obstacle1 4
   m_TagString: Obstacle
@@ -167,3 +168,19 @@ PolygonCollider2D:
       - {x: 0.08, y: -0.47}
       - {x: 0.32, y: -0.45}
       - {x: 0.35, y: -0.39999998}
+--- !u!208 &477426097209069008
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7403653419134425192}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.49, y: 0.48000002, z: 0.1}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
