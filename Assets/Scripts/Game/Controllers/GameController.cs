@@ -29,7 +29,7 @@ public class GameController : MonoBehaviour
         playershipScr.Move(PlayerMoveInput());
         playershipScr.Rotate(PlayerRotateInput());
         playershipScr.Shoot(PlayerHasShot());
-        transform.position = new Vector3(playershipScr.transform.position.x, playershipScr.transform.position.y, -10);
+        transform.position = new Vector3(playershipScr.transform.position.x, playershipScr.transform.position.y, -10); // Camera update
     }
 
     float enemiesSpawnTimer = 0;
@@ -49,11 +49,13 @@ public class GameController : MonoBehaviour
         float playerY = playershipScr.transform.position.y;
 
         float spawnX, spawnY;
+        int maxTry = 33;
         do
         {
-            spawnX = -GAME_CONFIG.DEFAULT_WIDTH / 2 + Random.Range(0, GAME_CONFIG.DEFAULT_WIDTH - 10);
-            spawnY = -GAME_CONFIG.DEFAULT_HEIGHT / 2 + Random.Range(0, GAME_CONFIG.DEFAULT_HEIGHT - 10);
-        } while (Mathf.Abs(playerX - spawnX) <= 100 || Mathf.Abs(playerY - spawnY) <= 50);
+            maxTry--;
+            spawnX = -GAME_CONFIG.DEFAULT_WIDTH / 2 + 10 + Random.Range(0, GAME_CONFIG.DEFAULT_WIDTH - 20);
+            spawnY = -GAME_CONFIG.DEFAULT_HEIGHT / 2 + 10 + Random.Range(0, GAME_CONFIG.DEFAULT_HEIGHT - 20);
+        } while ((Mathf.Abs(playerX - spawnX) <= 100 || Mathf.Abs(playerY - spawnY) <= 50) && maxTry >= 0);
 
         enemyController.SpawnEnemy(new Vector3(spawnX, spawnY, 0));
     }
@@ -71,8 +73,16 @@ public class GameController : MonoBehaviour
 
     void SpawnPowerUp()
     {
-        float spawnX = 0;
-        float spawnY = 0;
+        float spawnX, spawnY;
+        int maxTry = 33;
+        do
+        {
+            maxTry--;
+            spawnX = -GAME_CONFIG.DEFAULT_WIDTH / 2 + Random.Range(0, GAME_CONFIG.DEFAULT_WIDTH - 10);
+            spawnY = -GAME_CONFIG.DEFAULT_HEIGHT / 2 + Random.Range(0, GAME_CONFIG.DEFAULT_HEIGHT - 10);
+            Collider2D[] obstaclesCollided = Physics2D.OverlapBoxAll(new Vector3(spawnX, spawnY, 0), new Vector3(6f, 5.11f, 1), 0);
+            if (obstaclesCollided.Length == 0) break;
+        } while (maxTry > 0);
 
         powerUpController.SpawnPowerUp(new Vector3(spawnX, spawnY, 0));
     }

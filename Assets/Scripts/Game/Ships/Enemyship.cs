@@ -17,7 +17,6 @@ public class Enemyship : Spaceship
         agent.updateUpAxis = false;
     }
 
-    float shootTime = 1;
     float currentTime = 0;
     // Move later to GameController for more efficiency
     public void AI()
@@ -39,16 +38,18 @@ public class Enemyship : Spaceship
 
 
         currentTime += Time.deltaTime;
-        if (currentTime >= shootTime)
+        if (currentTime >= GAME_CONFIG.enemy_shooting_speed)
         {
             ShootInDirection();
-            currentTime = 0;
         }
     }
 
-
     public void ShootInDirection()
     {
+        // Only shoot if the bullet can hit the target at the moment of shooting
+        float distance = Vector3.Distance(player.transform.position, transform.position);
+        if (distance >= shipStats.velocity * 3 * GAME_CONFIG.BULLET_TIME_ALIVE) return;
+
         Vector3 diff = player.transform.position - transform.position;
         diff.Normalize();
 
@@ -56,6 +57,8 @@ public class Enemyship : Spaceship
         Quaternion rotation = Quaternion.Euler(0f, 0f, rot_z - 90);
 
         bulletController.ShootBullet(transform.position, rotation, shipStats);
+
+        currentTime = 0;
     }
     public void OnTriggerEnter2D(Collider2D other)
     {

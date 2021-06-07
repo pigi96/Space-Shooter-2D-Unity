@@ -6,8 +6,8 @@ public static class GAME_CONFIG
 {
     // Configuration for level RENDERING
     public const int LEVEL_BOUNDS_THICKNESS = 3; // default == 3
-    public const int DEFAULT_WIDTH = 500; // default == 300, can't be lower than 200
-    public const int DEFAULT_HEIGHT = 500; // default == 300, can't be lower than 100
+    public const int DEFAULT_WIDTH = 250; // default == 300, can't be lower than 200
+    public const int DEFAULT_HEIGHT = 250; // default == 300, can't be lower than 100
     public const int RENDER_OUTSIDE_BOUNDS = 222; // default == 222
     public const int STARS_DISTANCE = 30; // default == 30
     public const int STARS_DISTANCE_INTERVAL = 9; // default == 9
@@ -21,6 +21,7 @@ public static class GAME_CONFIG
     public const int MAX_COMBINED_OBSTACLES = 10; // default == 10
 
 
+    public const float BULLET_TIME_ALIVE = 1f;
 
 
 
@@ -33,9 +34,11 @@ public static class GAME_CONFIG
 
     // Setup variables from main-menu, also with defaults underlaid
     // ------------------------------------------------------------
-    public static int max_enemies = 10;
-    public static int enemies_spawn_timer = 100;
-    public static int power_up_spawn_timer = 3;
+    public static int max_enemies = 55;
+    public static int enemies_spawn_timer = 1;
+    public static int max_power_ups = 10;
+    public static int power_up_spawn_timer = 1;
+    public static float enemy_shooting_speed = 1;
 
     // PLAYER defaults
     public static ShipStats playerShipSettings = new ShipStats(20, 20, 1, 33, 222, BulletType.Player, 5f, 5f);

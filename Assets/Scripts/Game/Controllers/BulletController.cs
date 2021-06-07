@@ -39,9 +39,10 @@ public class BulletController : MonoBehaviour
             {
                 bullets[i].transform.Translate(Vector3.up * bullets[i].gameObject.GetComponentInChildren<Bullet>().shipStats.velocity * 3 * Time.deltaTime);
 
-                bullets[i].currentDistance += bullets[i].gameObject.GetComponentInChildren<Bullet>().shipStats.velocity * 3 * Time.deltaTime;
+                //bullets[i].currentDistance += bullets[i].gameObject.GetComponentInChildren<Bullet>().shipStats.velocity * 3 * Time.deltaTime;
+                bullets[i].timeAlive += Time.deltaTime;
 
-                if (bullets[i].currentDistance > 70f)
+                if (bullets[i].timeAlive > GAME_CONFIG.BULLET_TIME_ALIVE)
                 {
                     bullets[i].Deactivate();
                 }

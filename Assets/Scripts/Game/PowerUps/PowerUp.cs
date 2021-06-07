@@ -33,6 +33,8 @@ public class PowerUp : MonoBehaviour
         {
             gameObject.GetComponentInChildren<SpriteRenderer>().sprite = speed;
         }
+
+        transform.position = spawnPos;
     }
 
     public void Deactivate()

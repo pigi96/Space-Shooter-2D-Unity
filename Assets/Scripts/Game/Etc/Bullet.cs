@@ -9,14 +9,16 @@ public class Bullet : MonoBehaviour
 
     public bool alive = false;
 
-    public float currentDistance = 0;
+    //public float currentDistance = 0;
+    public float timeAlive = 0;
 
     public Sprite singleBullet, doubleBullet;
 
     public void Deactivate()
     {
         alive = false;
-        currentDistance = 0;
+        //currentDistance = 0;
+        timeAlive = 0;
         gameObject.SetActive(false);
     }
 
