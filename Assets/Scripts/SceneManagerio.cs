@@ -24,4 +24,14 @@ public class SceneManagerio : MonoBehaviour
     {
         SceneManager.LoadScene(1);
     }
+
+    public void ChangeToShop()
+    {
+        SceneManager.LoadScene(2);
+    }
+
+    public static void ChangeToShopStatic()
+    {
+        SceneManager.LoadScene(2);
+    }
 }

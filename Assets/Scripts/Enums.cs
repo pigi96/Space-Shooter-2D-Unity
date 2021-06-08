@@ -1,4 +1,6 @@
-﻿using UnityEditor;
+﻿using System;
+using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 public enum Direction
@@ -20,4 +22,35 @@ public enum PowerUpType
     Armor = 1,
     Speed = 3,
     Damage = 4,
+}
+
+public enum PlayershipStat
+{
+    HP,
+    Armor,
+    Speed,
+    Damage,
+}
+
+public enum PlayerStats
+{
+    Money,
+}
+
+public static class Enums
+{
+    public static Dictionary<PlayershipStat, string> playershipStats = new Dictionary<PlayershipStat, string>();
+    public static Dictionary<PlayershipStat, string> playershipStatsCosts = new Dictionary<PlayershipStat, string>();
+    public static Dictionary<PlayerStats, string> playerStats = new Dictionary<PlayerStats, string>();
+
+    static Enums()
+    {
+        foreach (PlayershipStat i in Enum.GetValues(typeof(PlayershipStat)))
+        {
+            playershipStats.Add(i, i.ToString());
+            playershipStatsCosts.Add(i, i+"_cost");
+        }
+
+        playerStats.Add(PlayerStats.Money, "Money");
+    }
 }

@@ -64,15 +64,24 @@ public static class LevelGeneration
     {
         float HP = 3 + level;
         // skip armor for now
-        float bulletDamage = 9 + level;
+        float bulletDamage = 1 + level;
         // velocity is ignored for now
-        // turing speed is ignored
+        // turning speed is ignored
         // both buffs are not possible anyway for now
         // ...
         GAME_CONFIG.enemiesShipSettings = new ShipStats(HP, 3, bulletDamage, 25, 300, BulletType.Enemy, 5f, 5f);
 
-        LevelConfiguration.enemiesToKill = 1 + level/5;
+        LevelConfiguration.enemiesToKill = 5 + level/5;
         LevelConfiguration.playfieldWidth = 300 + level * 5;
         LevelConfiguration.playfieldHeight = 300 + level * 5;
+
+        // Create player stats
+        float playerHP = PlayerPrefs.GetFloat(Enums.playershipStats[PlayershipStat.HP]);
+        float playerArmor = PlayerPrefs.GetFloat(Enums.playershipStats[PlayershipStat.Armor]);
+        float playerSpeed = PlayerPrefs.GetFloat(Enums.playershipStats[PlayershipStat.Speed]);
+        float playerDamage = PlayerPrefs.GetFloat(Enums.playershipStats[PlayershipStat.Damage]);
+        // last two stats TODO if bother
+        // ...
+        GAME_CONFIG.playerShipSettings = new ShipStats(playerHP, playerArmor, playerDamage, playerSpeed, 300, BulletType.Player, 5f, 5f);
     }
 }

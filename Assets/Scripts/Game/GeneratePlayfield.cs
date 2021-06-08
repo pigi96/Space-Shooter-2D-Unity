@@ -13,6 +13,7 @@ public class GeneratePlayfield : MonoBehaviour
     void Awake()
     {
         Random.InitState(GAME_CONFIG.LEVEL);
+
         playfieldObject.GetComponent<Transform>().localScale = new Vector3(LevelConfiguration.playfieldWidth + GAME_CONFIG.RENDER_OUTSIDE_BOUNDS, LevelConfiguration.playfieldHeight + GAME_CONFIG.RENDER_OUTSIDE_BOUNDS, 0);
         CreateBackgroundBounds();
         //CreateBackgroundStars();

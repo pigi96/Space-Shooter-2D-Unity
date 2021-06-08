@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Playfield.unity
     guid: 97ce40269303c9c46b98aa0552a3016a
+  - enabled: 1
+    path: Assets/Scenes/Shop Menu.unity
+    guid: 9e4d07e2f03a0844db5809e75e2100ea
   m_configObjects: {}
