@@ -48,7 +48,7 @@ public class GameController : MonoBehaviour
     public void EndGame(bool success)
     {
         this.success = success;
-        gameUIController.GameOver(true, 0);
+        gameUIController.GameOver(success, playershipScr.scoreInt);
         SaveMoney();
         Pause();
     }

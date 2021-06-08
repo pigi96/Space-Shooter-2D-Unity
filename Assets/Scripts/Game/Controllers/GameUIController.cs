@@ -11,6 +11,10 @@ public class GameUIController : MonoBehaviour
     
     public GameObject gameOverUI;
     public Text gameOverScore, gameOverMsg, nextButtonMsg;
+    public GameObject successObj, failureObj;
+
+    public GameObject changableButton;
+    public Sprite successSprite, failureSprite;
 
     public void OpenPauseMenu()
     {
@@ -30,12 +34,14 @@ public class GameUIController : MonoBehaviour
 
         if (success)
         {
-            gameOverMsg.text = "Completed!";
-            nextButtonMsg.text = "Next";
+            successObj.SetActive(true);
+            failureObj.SetActive(false);
+            changableButton.GetComponentInChildren<Image>().sprite = successSprite;
         } else
         {
-            gameOverMsg.text = "Failed!";
-            nextButtonMsg.text = "Repeat";
+            successObj.SetActive(false);
+            failureObj.SetActive(true);
+            changableButton.GetComponentInChildren<Image>().sprite = failureSprite;
         }
 
         gameOverScore.text = score.ToString();
