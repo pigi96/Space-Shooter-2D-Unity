@@ -11,6 +11,7 @@ public class LevelButton : MonoBehaviour
     {
         GAME_CONFIG.LEVEL = level;
         LevelGeneration.CreateShipStatsForLevel(GAME_CONFIG.LEVEL);
-        SceneManager.LoadScene(1);
+        SoundController.instance.UIClick();
+        GameObject.Find("LevelLoader").GetComponentInChildren<LevelLoader>().LoadNextLevel(1);
     }
 }

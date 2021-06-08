@@ -16,7 +16,14 @@ public class UpgradeBar : MonoBehaviour
 
     public void UpgradeClicked()
     {
-        UpgradeLogic.UpgradeStat(playershipStat);
+        bool upgraded = UpgradeLogic.UpgradeStat(playershipStat);
+        if (upgraded)
+        {
+            SoundController.instance.SuccessSound();
+        } else
+        {
+            SoundController.instance.FailedSound();
+        }
         UpdateUI();
     }
 
