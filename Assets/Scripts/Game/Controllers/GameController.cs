@@ -45,11 +45,24 @@ public class GameController : MonoBehaviour
         }
     }
 
+    public void EndGame(bool success)
+    {
+        this.success = success;
+        gameUIController.GameOver(true, 0);
+        SaveMoney();
+        Pause();
+    }
+
+    public void SaveMoney()
+    {
+        float currentMoney = PlayerPrefs.GetFloat(Enums.playerStats[PlayerStats.Money]);
+        PlayerPrefs.SetFloat(Enums.playerStats[PlayerStats.Money], currentMoney + playershipScr.scoreInt);
+        PlayerPrefs.Save();
+    }
+
     public void GameOver()
     {
-        success = false;
-        gameUIController.GameOver(false, 0);
-        Pause();
+        EndGame(false);
     }
 
     public void NextLevel()
@@ -73,9 +86,7 @@ public class GameController : MonoBehaviour
             currentLevel += 1;
             PlayerPrefs.SetInt("Current_Level", currentLevel);
             PlayerPrefs.Save();
-            success = true;
-            gameUIController.GameOver(true, 0);
-            Pause();
+            EndGame(true);
         }
     }
 

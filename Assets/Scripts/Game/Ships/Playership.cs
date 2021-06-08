@@ -13,8 +13,11 @@ public class Playership : Spaceship
     public RectTransform armorBar;
     public Text armorBarText;
 
+    private float hpBarWidth, armorBarWidth;
     private void Awake()
     {
+        hpBarWidth = hpBar.GetComponentInChildren<RectTransform>().sizeDelta.x;
+        armorBarWidth = armorBar.GetComponentInChildren<RectTransform>().sizeDelta.x;
         CreateShip(new ShipStats(GAME_CONFIG.playerShipSettings));
         bulletController = GameObject.Find("Main Camera").GetComponentInChildren<BulletController>();
         UpdateUI();
@@ -43,8 +46,8 @@ public class Playership : Spaceship
 
     void UpdateUI()
     {
-        hpBar.sizeDelta = new Vector2((shipStats.HP / shipStats.maxHP) * 300f, hpBar.sizeDelta.y);
-        armorBar.sizeDelta = new Vector2((shipStats.armor / shipStats.maxArmor) * 300f, armorBar.sizeDelta.y);
+        hpBar.sizeDelta = new Vector2((shipStats.HP / shipStats.maxHP) * hpBarWidth, hpBar.sizeDelta.y);
+        armorBar.sizeDelta = new Vector2((shipStats.armor / shipStats.maxArmor) * armorBarWidth, armorBar.sizeDelta.y);
         hpBarText.text = shipStats.HP + "";
         armorBarText.text = shipStats.armor + "";
     }

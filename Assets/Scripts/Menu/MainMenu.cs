@@ -26,7 +26,7 @@ public class MainMenu : MonoBehaviour
             GameObject newLevelButton = Instantiate(levelPrefab);
             newLevelButton.GetComponentInChildren<LevelButton>().level = i + 1;
             newLevelButton.GetComponentInChildren<Text>().text = i + 1 + "";
-            newLevelButton.transform.SetParent(content.transform);
+            newLevelButton.transform.SetParent(content.transform, false);
         }
     }
 

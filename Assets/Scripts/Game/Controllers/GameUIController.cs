@@ -47,6 +47,6 @@ public class GameUIController : MonoBehaviour
         if (gameObject.GetComponentInChildren<GameController>().success)
             GAME_CONFIG.LEVEL = newLevel + 1;
         LevelGeneration.CreateShipStatsForLevel(GAME_CONFIG.LEVEL);
-        SceneManagerio.ChangeToGameFieldStatic();
+        GameObject.Find("LevelLoader").GetComponentInChildren<LevelLoader>().LoadNextLevel(1);
     }
 }
