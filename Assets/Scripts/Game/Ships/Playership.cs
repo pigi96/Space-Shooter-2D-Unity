@@ -13,6 +13,8 @@ public class Playership : Spaceship
     public RectTransform armorBar;
     public Text armorBarText;
 
+    public ParticleSystem alivePart, deadPart;
+
     private float hpBarWidth, armorBarWidth;
     private void Awake()
     {
@@ -33,6 +35,9 @@ public class Playership : Spaceship
 
                 if (shipStats.HP <= 0)
                 {
+                    gameObject.GetComponentInChildren<Transform>().localScale = new Vector3(0, 0, 0);
+                    alivePart.Stop();
+                    deadPart.Play();
                     GameObject.Find("Main Camera").GetComponentInChildren<GameController>().GameOver();
                 }
             }

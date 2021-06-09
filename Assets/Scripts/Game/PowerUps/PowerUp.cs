@@ -42,12 +42,12 @@ public class PowerUp : MonoBehaviour
 
     public void Deactivate()
     {
-        pickedUp = true;
         StartCoroutine(AnimateOut());
     }
 
     IEnumerator AnimateOut()
     {
+        pickedUp = true;
         SoundController.instance.PoweUp();
 
         while (transform.localScale.x > 0)
@@ -70,6 +70,7 @@ public class PowerUp : MonoBehaviour
         float sizeScale = 0;
         while (sizeScale <= 25)
         {
+            if (pickedUp) break;
             sizeScale += Time.deltaTime * 12.5f;
             transform.Rotate(0, 0, 540f*Time.deltaTime);
             transform.localScale = new Vector3(sizeScale, sizeScale);

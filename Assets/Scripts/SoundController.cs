@@ -9,7 +9,8 @@ public class SoundController : MonoBehaviour
     public AudioSource audioSourceSound;
     public AudioSource audioSourceMusic;
 
-    public AudioClip UIClickClip, successClip, failedClip, laser1Clip, laser2Clip, laser3Clip, explosionClip, powerUpClip;
+    public AudioClip UIClickClip, successClip, failedClip, laser1Clip, laser2Clip, laser3Clip, explosionClip, powerUpClip,
+        gameOverClip, gameCompleteClip;
 
     void Awake()
     {
@@ -61,5 +62,15 @@ public class SoundController : MonoBehaviour
     public void PoweUp()
     {
         audioSourceSound.PlayOneShot(powerUpClip, 0.20f);
+    }
+
+    public void GameOver()
+    {
+        audioSourceSound.PlayOneShot(gameOverClip, 0.3f);
+    }
+    
+    public void GameComplete()
+    {
+        audioSourceSound.PlayOneShot(gameCompleteClip, 0.3f);
     }
 }

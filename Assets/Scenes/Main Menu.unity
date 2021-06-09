@@ -977,6 +977,8 @@ MonoBehaviour:
   laser3Clip: {fileID: 8300000, guid: f5fcfc69ff807784eb7a2b3b4f3d7521, type: 3}
   explosionClip: {fileID: 8300000, guid: d1f75c4e8068f504eb95a7ff9672a290, type: 3}
   powerUpClip: {fileID: 8300000, guid: 94a93f74a0882b2499aa8201f6428cc3, type: 3}
+  gameOverClip: {fileID: 8300000, guid: b5b720c40d74dcd4a9a5e7aa7e0a9073, type: 3}
+  gameCompleteClip: {fileID: 8300000, guid: 5b11ad02c8b744842b7c6e908196dd47, type: 3}
 --- !u!4 &1009504997
 Transform:
   m_ObjectHideFlags: 0
