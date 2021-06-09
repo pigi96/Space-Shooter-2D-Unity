@@ -10,6 +10,7 @@ public class PowerUp : MonoBehaviour
     public float duration;
 
     public bool alive;
+    public bool pickedUp;
 
     public void Activate(Vector3 spawnPos, PowerUpType powerUpType)
     {
@@ -20,7 +21,7 @@ public class PowerUp : MonoBehaviour
         if (powerUpType == PowerUpType.Repair)
         {
             gameObject.GetComponentInChildren<SpriteRenderer>().sprite = health;
-        } 
+        }
         else if (powerUpType == PowerUpType.Armor)
         {
             gameObject.GetComponentInChildren<SpriteRenderer>().sprite = armor;
@@ -34,13 +35,46 @@ public class PowerUp : MonoBehaviour
             gameObject.GetComponentInChildren<SpriteRenderer>().sprite = speed;
         }
 
+        
         transform.position = spawnPos;
+        StartCoroutine(AnimateIn());
     }
 
     public void Deactivate()
     {
+        pickedUp = true;
+        StartCoroutine(AnimateOut());
+    }
+
+    IEnumerator AnimateOut()
+    {
+        SoundController.instance.PoweUp();
+
+        while (transform.localScale.x > 0)
+        {
+            transform.Rotate(0, 0, transform.rotation.z + Time.deltaTime * 300);
+            transform.localScale = new Vector3(transform.localScale.x - 0.08f, transform.localScale.y - 0.08f);
+            yield return null;
+        }
+
         gameObject.SetActive(false);
         alive = false;
+    }
+
+    IEnumerator AnimateIn()
+    {
+        pickedUp = false;
+        transform.rotation = Quaternion.identity;
+        transform.localScale = new Vector3(0, 0);
+
+        float sizeScale = 0;
+        while (sizeScale <= 25)
+        {
+            sizeScale += Time.deltaTime * 12.5f;
+            transform.Rotate(0, 0, 540f*Time.deltaTime);
+            transform.localScale = new Vector3(sizeScale, sizeScale);
+            yield return null;
+        }
     }
 
     public void PowerUpFunction(ShipStats shipStats)

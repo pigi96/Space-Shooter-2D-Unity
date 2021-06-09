@@ -12,13 +12,13 @@ public class GeneratePlayfield : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-        Random.InitState(GAME_CONFIG.LEVEL);
-
+        Random.InitState(GAME_CONFIG.LEVEL); // Use seed for levels
         playfieldObject.GetComponent<Transform>().localScale = new Vector3(LevelConfiguration.playfieldWidth + GAME_CONFIG.RENDER_OUTSIDE_BOUNDS, LevelConfiguration.playfieldHeight + GAME_CONFIG.RENDER_OUTSIDE_BOUNDS, 0);
         CreateBackgroundBounds();
         //CreateBackgroundStars();
         CreateGameObstacles();
         gameObject.GetComponentInChildren<NavMeshSurface2d>().BuildNavMesh();
+        Random.InitState(System.Environment.TickCount); // Reset seed
     }
 
     void CreateBackgroundBounds()

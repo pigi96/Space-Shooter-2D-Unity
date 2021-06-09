@@ -975,7 +975,8 @@ MonoBehaviour:
   laser1Clip: {fileID: 8300000, guid: a01afcb53152bc948be5d81e56275e63, type: 3}
   laser2Clip: {fileID: 8300000, guid: ef09ae134c2289e46bae04ac3a929088, type: 3}
   laser3Clip: {fileID: 8300000, guid: f5fcfc69ff807784eb7a2b3b4f3d7521, type: 3}
-  explosion: {fileID: 8300000, guid: d1f75c4e8068f504eb95a7ff9672a290, type: 3}
+  explosionClip: {fileID: 8300000, guid: d1f75c4e8068f504eb95a7ff9672a290, type: 3}
+  powerUpClip: {fileID: 8300000, guid: 94a93f74a0882b2499aa8201f6428cc3, type: 3}
 --- !u!4 &1009504997
 Transform:
   m_ObjectHideFlags: 0

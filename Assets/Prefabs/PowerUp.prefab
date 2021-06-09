@@ -104,6 +104,7 @@ MonoBehaviour:
   damage: {fileID: 21300000, guid: 4f73ab1a0191fa847a1cabf16f5a869a, type: 3}
   duration: 0
   alive: 0
+  pickedUp: 0
 --- !u!61 &5543851067627611186
 BoxCollider2D:
   m_ObjectHideFlags: 0

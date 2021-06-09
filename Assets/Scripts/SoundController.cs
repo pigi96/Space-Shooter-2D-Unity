@@ -9,7 +9,7 @@ public class SoundController : MonoBehaviour
     public AudioSource audioSourceSound;
     public AudioSource audioSourceMusic;
 
-    public AudioClip UIClickClip, successClip, failedClip, laser1Clip, laser2Clip, laser3Clip, explosion;
+    public AudioClip UIClickClip, successClip, failedClip, laser1Clip, laser2Clip, laser3Clip, explosionClip, powerUpClip;
 
     void Awake()
     {
@@ -55,6 +55,11 @@ public class SoundController : MonoBehaviour
 
     public void Explosion()
     {
-        audioSourceSound.PlayOneShot(explosion, 0.11f);
+        audioSourceSound.PlayOneShot(explosionClip, 0.11f);
+    }
+
+    public void PoweUp()
+    {
+        audioSourceSound.PlayOneShot(powerUpClip, 0.20f);
     }
 }
