@@ -22,6 +22,7 @@ public class GameController : MonoBehaviour
 
     void Awake()
     {
+        SoundController.instance.OpenLevel();
         gameUIController = gameObject.GetComponentInChildren<GameUIController>();    
     }
 
@@ -81,7 +82,6 @@ public class GameController : MonoBehaviour
 
         if (enemiesLeft <= 0)
         {
-            print("Level Completed!");
             int currentLevel = PlayerPrefs.GetInt(Enums.playerStats[PlayerStats.CurrentLevel], 0);
             currentLevel += 1;
             PlayerPrefs.SetInt(Enums.playerStats[PlayerStats.CurrentLevel], currentLevel);

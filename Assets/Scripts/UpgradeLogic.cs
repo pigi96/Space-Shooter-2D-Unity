@@ -43,44 +43,52 @@ public static class UpgradeLogic
         }
     }
 
-    // Custom algorithms for everything :/ TODO
+    // TODO -> change to leveling system, not so primitive... :/
     private static float UpgradeHP(float value)
     {
-        return value + 2;
+        int newValue = (int)(1.5f * value);
+        return newValue;
     }
 
     private static float UpgradeHPCost(float cost)
     {
-        return cost + 2;
+        int newCost = (int)(2 * cost);
+        return newCost;
     }
 
     private static float UpgradeArmor(float value)
     {
-        return value + 2;
+        int newValue = (int)(1.5f * value);
+        return newValue;
     }
 
     private static float UpgradeArmorCost(float cost)
     {
-        return cost + 2;
+        int newCost = (int)(2 * cost);
+        return newCost;
     }
 
     private static float UpgradeSpeed(float value)
     {
-        return value + 2;
+        int newValue = (int)(value + 3);
+        return newValue;
     }
 
     private static float UpgradeSpeedCost(float cost)
     {
-        return cost + 2;
+        int newCost = (int)(2 * cost);
+        return newCost;
     }
 
     private static float UpgradeDamage(float value)
     {
-        return value + 2;
+        int newValue = (int)(1.5f * value);
+        return newValue;
     }
 
     private static float UpgradeDamageCost(float cost)
     {
-        return cost + 2;
+        int newCost = (int)(2f * cost);
+        return newCost;
     }
 }

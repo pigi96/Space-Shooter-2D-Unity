@@ -26,20 +26,20 @@ public static class GAME_CONFIG
     public static bool forceOverwriteDataAtGameStart = true;
     public static void InitStats()
     {
-        PlayerPrefs.SetFloat(Enums.playershipStats[PlayershipStat.HP], 20);
-        PlayerPrefs.SetFloat(Enums.playershipStatsCosts[PlayershipStat.HP], 10);
+        PlayerPrefs.SetFloat(Enums.playershipStats[PlayershipStat.HP], 5);
+        PlayerPrefs.SetFloat(Enums.playershipStatsCosts[PlayershipStat.HP], 5);
 
-        PlayerPrefs.SetFloat(Enums.playershipStats[PlayershipStat.Armor], 10);
-        PlayerPrefs.SetFloat(Enums.playershipStatsCosts[PlayershipStat.Armor], 10);
+        PlayerPrefs.SetFloat(Enums.playershipStats[PlayershipStat.Armor], 5);
+        PlayerPrefs.SetFloat(Enums.playershipStatsCosts[PlayershipStat.Armor], 5);
 
         PlayerPrefs.SetFloat(Enums.playershipStats[PlayershipStat.Speed], 33);
-        PlayerPrefs.SetFloat(Enums.playershipStatsCosts[PlayershipStat.Speed], 10);
+        PlayerPrefs.SetFloat(Enums.playershipStatsCosts[PlayershipStat.Speed], 100);
 
-        PlayerPrefs.SetFloat(Enums.playershipStats[PlayershipStat.Damage], 1);
-        PlayerPrefs.SetFloat(Enums.playershipStatsCosts[PlayershipStat.Damage], 10);
+        PlayerPrefs.SetFloat(Enums.playershipStats[PlayershipStat.Damage], 2);
+        PlayerPrefs.SetFloat(Enums.playershipStatsCosts[PlayershipStat.Damage], 5);
 
-        PlayerPrefs.SetFloat(Enums.playerStats[PlayerStats.Money], 1000);
-        PlayerPrefs.SetInt(Enums.playerStats[PlayerStats.CurrentLevel], 10);
+        PlayerPrefs.SetFloat(Enums.playerStats[PlayerStats.Money], 1000000);
+        PlayerPrefs.SetInt(Enums.playerStats[PlayerStats.CurrentLevel], 100);
 
         PlayerPrefs.SetInt("FIRST_START", 1);
         PlayerPrefs.Save();
@@ -81,18 +81,18 @@ public static class LevelGeneration
 {
     public static void CreateShipStatsForLevel(int level)
     {
-        float HP = 3 + level;
+        float HP = (int)((4 + level) + ((4 + level) * (level/10f)));
         // skip armor for now
-        float bulletDamage = 1 + level;
+        float bulletDamage = (int)((1 + (level-1)) + ((1 + (level-1)) * (level/50f)));
         // velocity is ignored for now
         // turning speed is ignored
         // both buffs are not possible anyway for now
         // ...
         GAME_CONFIG.enemiesShipSettings = new ShipStats(HP, 3, bulletDamage, 25, 300, BulletType.Enemy, 5f, 5f);
 
-        LevelConfiguration.enemiesToKill = 5 + level/5;
-        LevelConfiguration.playfieldWidth = 300 + level * 5;
-        LevelConfiguration.playfieldHeight = 300 + level * 5;
+        LevelConfiguration.enemiesToKill = 3 + (level/3);
+        LevelConfiguration.playfieldWidth = 300 + (level/10 * 10);
+        LevelConfiguration.playfieldHeight = 300 + (level/10 * 10);
 
         // Create player stats
         float playerHP = PlayerPrefs.GetFloat(Enums.playershipStats[PlayershipStat.HP]);
