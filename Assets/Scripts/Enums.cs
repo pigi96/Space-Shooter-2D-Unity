@@ -35,6 +35,7 @@ public enum PlayershipStat
 public enum PlayerStats
 {
     Money,
+    CurrentLevel,
 }
 
 public static class Enums
@@ -51,6 +52,7 @@ public static class Enums
             playershipStatsCosts.Add(i, i+"_cost");
         }
 
-        playerStats.Add(PlayerStats.Money, "Money");
+        playerStats.Add(PlayerStats.Money, PlayerStats.Money.ToString());
+        playerStats.Add(PlayerStats.CurrentLevel, PlayerStats.CurrentLevel.ToString());
     }
 }

@@ -23,8 +23,27 @@ public static class GAME_CONFIG
 
     public const float BULLET_TIME_ALIVE = 1f;
 
+    public static bool forceOverwriteDataAtGameStart = true;
+    public static void InitStats()
+    {
+        PlayerPrefs.SetFloat(Enums.playershipStats[PlayershipStat.HP], 20);
+        PlayerPrefs.SetFloat(Enums.playershipStatsCosts[PlayershipStat.HP], 10);
 
+        PlayerPrefs.SetFloat(Enums.playershipStats[PlayershipStat.Armor], 10);
+        PlayerPrefs.SetFloat(Enums.playershipStatsCosts[PlayershipStat.Armor], 10);
 
+        PlayerPrefs.SetFloat(Enums.playershipStats[PlayershipStat.Speed], 33);
+        PlayerPrefs.SetFloat(Enums.playershipStatsCosts[PlayershipStat.Speed], 10);
+
+        PlayerPrefs.SetFloat(Enums.playershipStats[PlayershipStat.Damage], 1);
+        PlayerPrefs.SetFloat(Enums.playershipStatsCosts[PlayershipStat.Damage], 10);
+
+        PlayerPrefs.SetFloat(Enums.playerStats[PlayerStats.Money], 1000);
+        PlayerPrefs.SetInt(Enums.playerStats[PlayerStats.CurrentLevel], 10);
+
+        PlayerPrefs.SetInt("FIRST_START", 1);
+        PlayerPrefs.Save();
+    }
 
 
 
@@ -82,6 +101,6 @@ public static class LevelGeneration
         float playerDamage = PlayerPrefs.GetFloat(Enums.playershipStats[PlayershipStat.Damage]);
         // last two stats TODO if bother
         // ...
-        GAME_CONFIG.playerShipSettings = new ShipStats(playerHP, playerArmor, playerDamage, playerSpeed, 300, BulletType.Player, 5f, 5f);
+        GAME_CONFIG.playerShipSettings = new ShipStats(playerHP, playerArmor, playerDamage, playerSpeed, 333, BulletType.Player, 5f, 5f);
     }
 }

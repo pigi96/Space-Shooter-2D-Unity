@@ -82,9 +82,9 @@ public class GameController : MonoBehaviour
         if (enemiesLeft <= 0)
         {
             print("Level Completed!");
-            int currentLevel = PlayerPrefs.GetInt("Current_Level", 0);
+            int currentLevel = PlayerPrefs.GetInt(Enums.playerStats[PlayerStats.CurrentLevel], 0);
             currentLevel += 1;
-            PlayerPrefs.SetInt("Current_Level", currentLevel);
+            PlayerPrefs.SetInt(Enums.playerStats[PlayerStats.CurrentLevel], currentLevel);
             PlayerPrefs.Save();
             EndGame(true);
         }

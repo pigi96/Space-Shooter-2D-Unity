@@ -8,6 +8,7 @@ public class MainMenu : MonoBehaviour
     public GameObject levelPrefab;
     public GameObject content;
 
+    static bool firstOpened = false;
     // Start is called before the first frame update
     void Awake()
     {
@@ -15,12 +16,16 @@ public class MainMenu : MonoBehaviour
         //PlayerPrefs.Save();
         if (PlayerPrefs.GetInt("FIRST_START", 0) == 0)
         {
-            InitStats();
+            GAME_CONFIG.InitStats();
         }
 
-        int currentLevel = PlayerPrefs.GetInt("Current_Level", 0);
-        currentLevel = 30;
+        if (!firstOpened && GAME_CONFIG.forceOverwriteDataAtGameStart)
+        {
+            firstOpened = true;
+            GAME_CONFIG.InitStats();
+        }
 
+        int currentLevel = PlayerPrefs.GetInt(Enums.playerStats[PlayerStats.CurrentLevel], 0);
         for (int i = 0; i < currentLevel; i++)
         {
             GameObject newLevelButton = Instantiate(levelPrefab);
@@ -36,23 +41,5 @@ public class MainMenu : MonoBehaviour
         
     }
 
-    void InitStats()
-    {
-        PlayerPrefs.SetFloat(Enums.playershipStats[PlayershipStat.HP], 20);
-        PlayerPrefs.SetFloat(Enums.playershipStatsCosts[PlayershipStat.HP], 10);
-
-        PlayerPrefs.SetFloat(Enums.playershipStats[PlayershipStat.Armor], 10);
-        PlayerPrefs.SetFloat(Enums.playershipStatsCosts[PlayershipStat.Armor], 10);
-
-        PlayerPrefs.SetFloat(Enums.playershipStats[PlayershipStat.Speed], 33);
-        PlayerPrefs.SetFloat(Enums.playershipStatsCosts[PlayershipStat.Speed], 10);
-
-        PlayerPrefs.SetFloat(Enums.playershipStats[PlayershipStat.Damage], 1);
-        PlayerPrefs.SetFloat(Enums.playershipStatsCosts[PlayershipStat.Damage], 10);
-
-        PlayerPrefs.SetFloat(Enums.playerStats[PlayerStats.Money], 1000);
-
-        PlayerPrefs.SetInt("FIRST_START", 1);
-        PlayerPrefs.Save();
-    }
+   
 }
