@@ -44,7 +44,7 @@ public static class GAME_CONFIG
     public static ShipStats playerShipSettings = new ShipStats(20, 20, 1, 33, 300, BulletType.Player, 5f, 5f);
 
     // ENEMIES defaults
-    public static ShipStats enemiesShipSettings = new ShipStats(3, 3, 1, 25, 300, BulletType.Enemy, 5f, 5f);
+    public static ShipStats enemiesShipSettings = new ShipStats(3, 3, 1, 25, 100, BulletType.Enemy, 5f, 5f);
     // ------------------------------------------------------------
 }
 

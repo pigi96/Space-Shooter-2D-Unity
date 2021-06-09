@@ -7,7 +7,7 @@ public class EnemyController : MonoBehaviour
 {
     public GameObject enemyPrefab;
 
-    public List<Enemyship> enemies = new List<Enemyship>();
+    public List<EnemyBrain> enemies = new List<EnemyBrain>();
     bool blockSpawning = false;
 
     public void SpawnEnemy(Vector3 startPos)
@@ -30,8 +30,8 @@ public class EnemyController : MonoBehaviour
         if (!reusedEnemey)
         {
             GameObject newBullet = Instantiate(enemyPrefab);
-            newBullet.GetComponentInChildren<Enemyship>().Activate(startPos);
-            enemies.Add(newBullet.GetComponentInChildren<Enemyship>());
+            newBullet.GetComponentInChildren<EnemyBrain>().Activate(startPos);
+            enemies.Add(newBullet.GetComponentInChildren<EnemyBrain>());
         }
     }
 
@@ -40,10 +40,10 @@ public class EnemyController : MonoBehaviour
         int alive = 0;
         for (int i = 0; i < enemies.Count; i++)
         {
-            if (enemies[i].alive)
+            if (enemies[i].alive && !enemies[i].halfAlive)
             {
                 alive++;
-                enemies[i].AI();
+                enemies[i].enemy.GetComponent<Enemyship>().AI();
             }
         }
 
@@ -57,9 +57,9 @@ public class EnemyController : MonoBehaviour
     {
         for (int i = 0; i < enemies.Count; i++)
         {
-            if (enemies[i].alive)
+            if (enemies[i].alive && !enemies[i].halfAlive)
             {
-                enemies[i].Pause();
+                enemies[i].enemy.GetComponent<Enemyship>().Pause();
             }
         }
     }
@@ -68,9 +68,9 @@ public class EnemyController : MonoBehaviour
     {
         for (int i = 0; i < enemies.Count; i++)
         {
-            if (enemies[i].alive)
+            if (enemies[i].alive && !enemies[i].halfAlive)
             {
-                enemies[i].Resume();
+                enemies[i].enemy.GetComponent<Enemyship>().Resume();
             }
         }
     }

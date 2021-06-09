@@ -12,9 +12,10 @@ public class Spaceship : MonoBehaviour
 
     public BulletController bulletController;
     public RectTransform HPBarObj;
-    public RectTransform HPCanvas;
+    public GameObject HPCanvas;
 
     public Sprite[] sprites;
+    public ParticleSystem particleSystem;
 
     // Upgrading system for hp, armor, bullet damage, velocity and rotation speed
     public void CreateShip(ShipStats shipStats)
@@ -56,37 +57,8 @@ public class Spaceship : MonoBehaviour
         }
     }
 
-    public void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.CompareTag("Bullet"))
-        {
-            if (other.gameObject.GetComponentInChildren<Bullet>().type != shipStats.bulletType)
-            {
-                shipStats.TakeDamage(other.gameObject.GetComponentInChildren<Bullet>().bulletDamage);
-                HPBarObj.sizeDelta = new Vector2((shipStats.HP/shipStats.maxHP) * 300f, HPBarObj.sizeDelta.y);
+    
 
-                if (shipStats.HP <= 0)
-                {
-                    Deactivate();
-                }
-            }
-        }
-    }
+    
 
-    public void Activate(Vector3 spawnPosition)
-    {
-        gameObject.SetActive(true);
-        int random = Random.Range(0, sprites.Length);
-        gameObject.GetComponentInChildren<SpriteRenderer>().sprite = sprites[random]; 
-        transform.position = spawnPosition;
-        alive = true;
-        shipStats.Reset();
-        HPBarObj.sizeDelta = new Vector2((shipStats.HP / shipStats.maxHP) * 300f, HPBarObj.sizeDelta.y);
-    }
-
-    public void Deactivate()
-    {
-        gameObject.SetActive(false);
-        alive = false;
-    }
 }

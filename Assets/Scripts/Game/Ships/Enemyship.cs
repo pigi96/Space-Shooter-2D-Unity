@@ -12,12 +12,18 @@ public class Enemyship : Spaceship
     Vector2 saveVelocity;
     float saveAngularVelocity;
 
+    Vector3 savePos;
     private void Awake()
     {
         CreateShip(new ShipStats(GAME_CONFIG.enemiesShipSettings));
         bulletController = GameObject.Find("Main Camera").GetComponentInChildren<BulletController>();
         agent.updateRotation = false;
         agent.updateUpAxis = false;
+
+        /*player = GameObject.Find("Player").transform;
+        NavMeshPath path = new NavMeshPath();
+        agent.CalculatePath(player.transform.position, path);
+        agent.SetPath(path);*/
     }
 
     float currentTime = 0;
@@ -49,6 +55,45 @@ public class Enemyship : Spaceship
         if (currentTime >= LevelConfiguration.enemiesShootingSpeed)
         {
             ShootInDirection();
+        }
+    }
+
+    NavMeshPath path;
+    void NavMeshPath()
+    {
+        //path = new NavMeshPath();
+        //print(NavMesh.CalculatePath(transform.position, player.transform.position, NavMesh.AllAreas, path));
+        agent.SetDestination(player.transform.position);
+        agent.isStopped = true;
+        string var = "";
+        for (int i = 0; i < agent.path.corners.Length; i++)
+        {
+            var += agent.path.corners[i] + " , ";
+        }
+        print(var);
+        Move(true);
+        Vector3 heading = agent.path.corners[1] - transform.position;
+        Direction rotateTo = AngleDir(transform.forward, heading, transform.up);
+        Rotate(rotateTo);
+    }
+
+    //returns -1 when to the left, 1 to the right, and 0 for forward/backward
+    Direction AngleDir(Vector3 fwd, Vector3 targetDir, Vector3 up)
+    {
+        Vector3 perp = Vector3.Cross(fwd, targetDir);
+        float dir = Vector3.Dot(perp, up);
+
+        if (dir > 0.1f)
+        {
+            return Direction.Right;
+        }
+        else if (dir < -0.1f)
+        {
+            return Direction.Left;
+        }
+        else
+        {
+            return Direction.None;
         }
     }
 
@@ -103,10 +148,15 @@ public class Enemyship : Spaceship
                 {
                     GameObject.Find("Main Camera").GetComponentInChildren<GameController>().EnemyKilled();
                     player.gameObject.GetComponentInChildren<Playership>().IncrementScore(shipStats.maxHP);
-                    Deactivate();
+                    gameObject.transform.parent.GetComponent<EnemyBrain>().Deactivate();
                 }
             }
         }
     }
+
+    
+
+
+   
 
 }

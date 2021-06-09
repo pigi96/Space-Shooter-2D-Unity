@@ -29,6 +29,22 @@ public class BulletController : MonoBehaviour
             newBullet.GetComponentInChildren<Bullet>().Activate(startPos, rotation, shipStats);
             bullets.Add(newBullet.GetComponentInChildren<Bullet>());
         }
+
+        if (shipStats.bulletType == BulletType.Enemy)
+        {
+            SoundController.instance.Laser2Clip();
+        }
+
+        if (shipStats.bulletType == BulletType.Player)
+        {
+            if (shipStats.doubleDamage > 0)
+            {
+                SoundController.instance.Laser3Clip();
+            } else
+            {
+                SoundController.instance.LaserClip();
+            }
+        }
     }
 
     public void UpdateBullets()

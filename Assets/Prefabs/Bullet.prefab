@@ -100,9 +100,10 @@ MonoBehaviour:
   type: 0
   bulletDamage: 0
   alive: 0
-  currentDistance: 0
-  singleBullet: {fileID: 21300000, guid: 0ea4b401d4ae3c04d8388f9aeb01597d, type: 3}
-  doubleBullet: {fileID: 21300000, guid: 690f0bea6fde6784481147d9edbbb44c, type: 3}
+  timeAlive: 0
+  singleBullet: {fileID: 21300000, guid: dded611deefc51f4d9a5670c65476bfc, type: 3}
+  doubleBullet: {fileID: 21300000, guid: f401677546ca2184bb9dd652d82ba16a, type: 3}
+  enemyBullet: {fileID: 21300000, guid: b5a3a8840ed26b24eb3e493283bf308a, type: 3}
 --- !u!61 &761843088692523567
 BoxCollider2D:
   m_ObjectHideFlags: 0

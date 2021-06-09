@@ -90,13 +90,25 @@ public class GameController : MonoBehaviour
         }
     }
 
+    float timerForShootin = 1f;
     void ControlPlayer()
     {
+        timerForShootin += Time.deltaTime;
+        if (timerForShootin >= 0.25f)
+        {
+            bool shoot = PlayerHasShot();
+            if (shoot)
+            {
+                timerForShootin = 0;
+                playershipScr.Shoot(shoot);
+            }
+        } 
+
         playershipScr.shipStats.Update(Time.deltaTime);
         playershipScr.Move(PlayerMoveInput());
         playershipScr.Rotate(PlayerRotateInput());
-        playershipScr.Shoot(PlayerHasShot());
-        transform.position = new Vector3(playershipScr.transform.position.x, playershipScr.transform.position.y, -10); // Camera update
+        
+        transform.position = new Vector3(playershipScr.transform.position.x, playershipScr.transform.position.y, -100); // Camera update
         scrolling.UpdatePosition(playershipScr.transform);
     }
 

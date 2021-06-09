@@ -972,6 +972,10 @@ MonoBehaviour:
   UIClickClip: {fileID: 8300000, guid: d71cf068798dfd74fbdbbd9476641c3d, type: 3}
   successClip: {fileID: 8300000, guid: 22459a141bf37354e9bf3d556f6d8f66, type: 3}
   failedClip: {fileID: 8300000, guid: 304ef9a89c582264986649ccb87aa8a4, type: 3}
+  laser1Clip: {fileID: 8300000, guid: a01afcb53152bc948be5d81e56275e63, type: 3}
+  laser2Clip: {fileID: 8300000, guid: ef09ae134c2289e46bae04ac3a929088, type: 3}
+  laser3Clip: {fileID: 8300000, guid: f5fcfc69ff807784eb7a2b3b4f3d7521, type: 3}
+  explosion: {fileID: 8300000, guid: d1f75c4e8068f504eb95a7ff9672a290, type: 3}
 --- !u!4 &1009504997
 Transform:
   m_ObjectHideFlags: 0
@@ -996,11 +1000,11 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 1b07a9d6f844b084b908294441dec38c, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.033
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0

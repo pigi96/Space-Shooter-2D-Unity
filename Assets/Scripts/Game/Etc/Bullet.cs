@@ -12,7 +12,7 @@ public class Bullet : MonoBehaviour
     //public float currentDistance = 0;
     public float timeAlive = 0;
 
-    public Sprite singleBullet, doubleBullet;
+    public Sprite singleBullet, doubleBullet, enemyBullet;
 
     public void Deactivate()
     {
@@ -33,7 +33,10 @@ public class Bullet : MonoBehaviour
         this.bulletDamage = shipStats.bulletDamage;
         this.shipStats = shipStats;
 
-        if (shipStats.doubleDamage <= 0)
+        if (shipStats.bulletType == BulletType.Enemy)
+        {
+            gameObject.GetComponentInChildren<SpriteRenderer>().sprite = enemyBullet;
+        } else if (shipStats.doubleDamage <= 0)
         {
             gameObject.GetComponentInChildren<SpriteRenderer>().sprite = singleBullet;
         } else
