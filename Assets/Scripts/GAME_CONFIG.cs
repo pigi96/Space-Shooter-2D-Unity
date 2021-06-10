@@ -91,8 +91,8 @@ public static class LevelGeneration
         GAME_CONFIG.enemiesShipSettings = new ShipStats(HP, 3, bulletDamage, 25, 300, BulletType.Enemy, 5f, 5f);
 
         LevelConfiguration.enemiesToKill = 3 + (level/3);
-        LevelConfiguration.playfieldWidth = 300 + (level/10 * 10);
-        LevelConfiguration.playfieldHeight = 300 + (level/10 * 10);
+        LevelConfiguration.playfieldWidth = 320; //300 + (level/10 * 10);
+        LevelConfiguration.playfieldHeight = 320; // 300 + (level/10 * 10);
 
         // Create player stats
         float playerHP = PlayerPrefs.GetFloat(Enums.playershipStats[PlayershipStat.HP]);

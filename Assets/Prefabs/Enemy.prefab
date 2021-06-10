@@ -160,7 +160,6 @@ GameObject:
   - component: {fileID: 2069125811847927412}
   - component: {fileID: 2069125811847927415}
   - component: {fileID: 2069125811847927408}
-  - component: {fileID: 2069125811847927414}
   - component: {fileID: 2069125811847927413}
   - component: {fileID: 6219662888645782316}
   - component: {fileID: 7243416716887108448}
@@ -251,27 +250,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletPrefab: {fileID: 2979748912184250057, guid: 825ecb5313223574dbd80b002d73dda9, type: 3}
   bullets: []
---- !u!50 &2069125811847927414
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2069125811847927410}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 55
-  m_LinearDrag: 0.5
-  m_AngularDrag: 0.5
-  m_GravityScale: 0
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
 --- !u!195 &2069125811847927413
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -281,17 +259,17 @@ NavMeshAgent:
   m_GameObject: {fileID: 2069125811847927410}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 3.3
+  m_Radius: 3.6
   m_Speed: 15
-  m_Acceleration: 1000
+  m_Acceleration: 10000
   avoidancePriority: 50
-  m_AngularSpeed: 333
-  m_StoppingDistance: 40
+  m_AngularSpeed: 3333
+  m_StoppingDistance: 20
   m_AutoTraverseOffMeshLink: 1
-  m_AutoBraking: 0
+  m_AutoBraking: 1
   m_AutoRepath: 1
-  m_Height: 6.6
-  m_BaseOffset: 3.3
+  m_Height: 7.2
+  m_BaseOffset: 3.6
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
 --- !u!58 &6219662888645782316

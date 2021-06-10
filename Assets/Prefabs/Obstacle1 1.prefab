@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3485606551711423842}
   - component: {fileID: 6974058355242159046}
   - component: {fileID: -7358944320340232656}
-  - component: {fileID: 894965470568460089}
+  - component: {fileID: 1005371487129785057}
   m_Layer: 0
   m_Name: Obstacle1 1
   m_TagString: Obstacle
@@ -30,7 +30,7 @@ Transform:
   m_GameObject: {fileID: 7403653419134425192}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -79.2, y: 7.6, z: -2}
-  m_LocalScale: {x: 5, y: 5, z: 1}
+  m_LocalScale: {x: 16, y: 16, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -75,7 +75,7 @@ SpriteRenderer:
   m_SortingLayerID: 1491470871
   m_SortingLayer: 2
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: a4a9c2818f4c1ed4ea0a0ef35188de59, type: 3}
+  m_Sprite: {fileID: 21300000, guid: c11b18f0faed1f74f960bcf0f5e3987e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -132,15 +132,15 @@ NavMeshObstacle:
   m_GameObject: {fileID: 7403653419134425192}
   m_Enabled: 1
   serializedVersion: 3
-  m_Shape: 0
-  m_Extents: {x: 1, y: 0.5, z: 1}
+  m_Shape: 1
+  m_Extents: {x: 0.875, y: 0.875, z: 0.1}
   m_MoveThreshold: 0.1
-  m_Carve: 0
+  m_Carve: 1
   m_CarveOnlyStationary: 1
   m_Center: {x: 0, y: 0, z: 0}
   m_TimeToStationary: 0.5
---- !u!58 &894965470568460089
-CircleCollider2D:
+--- !u!61 &1005371487129785057
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -153,5 +153,15 @@ CircleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 6.2, y: 6.2}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
   serializedVersion: 2
-  m_Radius: 3.0333333
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0

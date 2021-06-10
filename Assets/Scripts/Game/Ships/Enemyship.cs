@@ -101,22 +101,22 @@ public class Enemyship : Spaceship
     {
         agent.isStopped = true;
         agent.SetDestination(transform.position);
-        Rigidbody2D rigidbody2D = gameObject.GetComponentInChildren<Rigidbody2D>();
-        saveVelocity = rigidbody2D.velocity;
-        saveAngularVelocity = rigidbody2D.angularVelocity;
-        rigidbody2D.velocity = new Vector2(0, 0);
-        rigidbody2D.angularVelocity = 0;
-        rigidbody2D.isKinematic = true;
+        //Rigidbody2D rigidbody2D = gameObject.GetComponentInChildren<Rigidbody2D>();
+        //saveVelocity = rigidbody2D.velocity;
+        //saveAngularVelocity = rigidbody2D.angularVelocity;
+        //rigidbody2D.velocity = new Vector2(0, 0);
+        //rigidbody2D.angularVelocity = 0;
+        //rigidbody2D.isKinematic = true;
     }
 
     public void Resume()
     {
         agent.isStopped = false;
         agent.SetDestination(player.transform.position);
-        Rigidbody2D rigidbody2D = gameObject.GetComponentInChildren<Rigidbody2D>();
-        rigidbody2D.isKinematic = false;
-        rigidbody2D.velocity = saveVelocity;
-        rigidbody2D.angularVelocity = saveAngularVelocity;
+        //Rigidbody2D rigidbody2D = gameObject.GetComponentInChildren<Rigidbody2D>();
+        //rigidbody2D.isKinematic = false;
+        //rigidbody2D.velocity = saveVelocity;
+        //rigidbody2D.angularVelocity = saveAngularVelocity;
     }
 
     public void ShootInDirection()

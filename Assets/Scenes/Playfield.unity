@@ -1302,6 +1302,7 @@ MonoBehaviour:
   boundsPrefab: {fileID: 2302794657926170766, guid: dcff29a2b0fd62c42a9d94b4d279ba95, type: 3}
   obstacles:
   - {fileID: 7403653419134425192, guid: 4ac807a1ffc1cdf4dad2d4363adac40d, type: 3}
+  obstaclePrefab: {fileID: 7403653419134425192, guid: 4ac807a1ffc1cdf4dad2d4363adac40d, type: 3}
 --- !u!1 &759221326
 GameObject:
   m_ObjectHideFlags: 0
