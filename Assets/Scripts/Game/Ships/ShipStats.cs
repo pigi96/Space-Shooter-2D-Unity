@@ -95,9 +95,11 @@ public class ShipStats
         if (doubleSpeed > 0)
         {
             velocity = 2 * baseVelocity;
+            SoundController.instance.engine.pitch = 1.3f;
         } else
         {
             velocity = baseVelocity;
+            SoundController.instance.engine.pitch = .65f;
         }
 
         doubleDamage -= deltaTime;

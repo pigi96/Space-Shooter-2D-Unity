@@ -110,6 +110,24 @@ public class GameController : MonoBehaviour
         
         transform.position = new Vector3(playershipScr.transform.position.x, playershipScr.transform.position.y, -100); // Camera update
         scrolling.UpdatePosition(playershipScr.transform);
+
+        ParticleSystemSpeedQuickFix();
+    }
+
+    bool activatedSpeed = false;
+    public void ParticleSystemSpeedQuickFix()
+    {
+        if (playershipScr.shipStats.doubleSpeed > 0)
+        {
+            activatedSpeed = true;
+
+            playershipScr.Speed2x();
+        } else
+        {
+            activatedSpeed = false;
+
+            playershipScr.Speed1x();
+        }
     }
 
     void ControlBullets()
@@ -136,12 +154,14 @@ public class GameController : MonoBehaviour
         playershipScr.Move(false);
         playershipScr.Rotate(Direction.None);
         enemyController.Pause();
+        SoundController.instance.engine.Stop();
     }
 
     public void Resume()
     {
         pause = false;
         enemyController.Resume();
+        SoundController.instance.engine.Play();
     }
 
     public void StopPlayer()
@@ -156,13 +176,13 @@ public class GameController : MonoBehaviour
         float playerY = playershipScr.transform.position.y;
 
         float spawnX, spawnY;
-        int maxTry = 33;
+        int maxTry = 100;
         do
         {
             maxTry--;
             spawnX = -LevelConfiguration.playfieldWidth / 2 + 10 + Random.Range(0, LevelConfiguration.playfieldWidth - 20);
             spawnY = -LevelConfiguration.playfieldHeight / 2 + 10 + Random.Range(0, LevelConfiguration.playfieldHeight - 20);
-        } while ((Mathf.Abs(playerX - spawnX) <= 100 || Mathf.Abs(playerY - spawnY) <= 50) && maxTry >= 0);
+        } while ((Mathf.Abs(playerX - spawnX) <= 111 || Mathf.Abs(playerY - spawnY) <= 111) && maxTry >= 0);
 
         enemyController.SpawnEnemy(new Vector3(spawnX, spawnY, 0));
     }
@@ -194,10 +214,21 @@ public class GameController : MonoBehaviour
         powerUpController.SpawnPowerUp(new Vector3(spawnX, spawnY, 0));
     }
 
-
+    bool wasMoving;
     public bool PlayerMoveInput()
     {
-        return Input.GetKey(KeyCode.UpArrow) ? true : false;
+        bool move = Input.GetKey(KeyCode.UpArrow) ? true : false;
+        if (move)
+        {
+            if (!wasMoving)
+                SoundController.instance.engine.Play();
+            wasMoving = true;
+        } else
+        {
+            wasMoving = false;
+            SoundController.instance.engine.Stop();
+        }
+        return move;
     }
 
     public Direction PlayerRotateInput()

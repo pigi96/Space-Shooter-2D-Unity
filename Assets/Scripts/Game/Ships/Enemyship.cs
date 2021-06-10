@@ -26,10 +26,24 @@ public class Enemyship : Spaceship
         agent.SetPath(path);*/
     }
 
+    public bool triggerRegroup;
+    public void Events()
+    {
+        if (shipStats.HP <= (shipStats.maxHP / 2))
+        {
+            triggerRegroup = true;
+        }
+    }
+
+    public void AIRegroup()
+    {
+        agent.SetDestination(new Vector3(0, 0, 0));
+    }
+
     float currentTime = 0;
     float pathfind = 0;
     // Move later to GameController for more efficiency
-    public void AI()
+    public void AIFollowPlayer()
     {
         if (player == null)
         {
@@ -43,6 +57,8 @@ public class Enemyship : Spaceship
                 return;
             }
         }
+
+        agent.SetDestination(player.transform.position);
 
         pathfind -= Time.deltaTime;
         if (pathfind <= 0)

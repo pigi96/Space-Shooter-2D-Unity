@@ -8,6 +8,7 @@ public class SoundController : MonoBehaviour
 
     public AudioSource audioSourceSound;
     public AudioSource audioSourceMusic;
+    public AudioSource engine;
 
     public AudioClip UIClickClip, successClip, failedClip, laser1Clip, laser2Clip, laser3Clip, explosionClip, powerUpClip,
         gameOverClip, gameCompleteClip, openUpClip;

@@ -23,10 +23,10 @@ public static class GAME_CONFIG
 
     public const float BULLET_TIME_ALIVE = 1f;
 
-    public static bool forceOverwriteDataAtGameStart = true;
+    public static bool forceOverwriteDataAtGameStart = false;
     public static void InitStats()
     {
-        PlayerPrefs.SetFloat(Enums.playershipStats[PlayershipStat.HP], 5);
+        PlayerPrefs.SetFloat(Enums.playershipStats[PlayershipStat.HP], 5); 
         PlayerPrefs.SetFloat(Enums.playershipStatsCosts[PlayershipStat.HP], 5);
 
         PlayerPrefs.SetFloat(Enums.playershipStats[PlayershipStat.Armor], 5);
@@ -38,8 +38,8 @@ public static class GAME_CONFIG
         PlayerPrefs.SetFloat(Enums.playershipStats[PlayershipStat.Damage], 2);
         PlayerPrefs.SetFloat(Enums.playershipStatsCosts[PlayershipStat.Damage], 5);
 
-        PlayerPrefs.SetFloat(Enums.playerStats[PlayerStats.Money], 1000000);
-        PlayerPrefs.SetInt(Enums.playerStats[PlayerStats.CurrentLevel], 100);
+        PlayerPrefs.SetFloat(Enums.playerStats[PlayerStats.Money], 100);
+        PlayerPrefs.SetInt(Enums.playerStats[PlayerStats.CurrentLevel], 1);
 
         PlayerPrefs.SetInt("FIRST_START", 1);
         PlayerPrefs.Save();
@@ -91,8 +91,8 @@ public static class LevelGeneration
         GAME_CONFIG.enemiesShipSettings = new ShipStats(HP, 3, bulletDamage, 25, 300, BulletType.Enemy, 5f, 5f);
 
         LevelConfiguration.enemiesToKill = 3 + (level/3);
-        LevelConfiguration.playfieldWidth = 320; //300 + (level/10 * 10);
-        LevelConfiguration.playfieldHeight = 320; // 300 + (level/10 * 10);
+        LevelConfiguration.playfieldWidth = 320 + (16 * (level / 20));
+        LevelConfiguration.playfieldHeight = 320 + (16 * (level / 20));
 
         // Create player stats
         float playerHP = PlayerPrefs.GetFloat(Enums.playershipStats[PlayershipStat.HP]);

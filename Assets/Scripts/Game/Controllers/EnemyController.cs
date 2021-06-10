@@ -14,8 +14,6 @@ public class EnemyController : MonoBehaviour
     {
         if (blockSpawning) return;
 
-
-
         bool reusedEnemey = false;
         for (int i = 0; i < enemies.Count; i++)
         {
@@ -43,7 +41,8 @@ public class EnemyController : MonoBehaviour
             if (enemies[i].alive && !enemies[i].halfAlive)
             {
                 alive++;
-                enemies[i].enemy.GetComponent<Enemyship>().AI();
+                Enemyship enemyship = enemies[i].enemy.GetComponent<Enemyship>();
+                enemyship.AIFollowPlayer();
             }
         }
 

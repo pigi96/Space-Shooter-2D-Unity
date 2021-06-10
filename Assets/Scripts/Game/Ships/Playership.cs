@@ -13,16 +13,35 @@ public class Playership : Spaceship
     public RectTransform armorBar;
     public Text armorBarText;
 
-    public ParticleSystem alivePart, deadPart;
+    public ParticleSystem alivePart, aliveSpeedPart, deadPart;
 
     private float hpBarWidth, armorBarWidth;
     private void Awake()
     {
+        Speed1x();
         hpBarWidth = hpBar.GetComponentInChildren<RectTransform>().sizeDelta.x;
         armorBarWidth = armorBar.GetComponentInChildren<RectTransform>().sizeDelta.x;
         CreateShip(new ShipStats(GAME_CONFIG.playerShipSettings));
         bulletController = GameObject.Find("Main Camera").GetComponentInChildren<BulletController>();
         UpdateUI();
+    }
+
+    public void Speed2x()
+    {
+        if (!aliveSpeedPart.isPlaying)
+        {
+            aliveSpeedPart.Play();
+            alivePart.Stop();
+        }
+    }
+
+    public void Speed1x()
+    {
+        if (!alivePart.isPlaying)
+        {
+            aliveSpeedPart.Stop();
+            alivePart.Play();
+        }
     }
 
     public void OnTriggerEnter2D(Collider2D other)
